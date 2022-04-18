@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/rubik"
+            android:text=""
+
+            android:textAlignment="center"
+            android:textColor="@color/TextColor"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.20"
+                android:fontFamily="@font/rubik"
+                android:gravity="start"
+                android:text="Mobile Number"
+                android:textAlignment="viewStart"
+                android:textColor="@color/TextColor"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/phone_number_request_form"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_margin="10dp"
+                android:layout_weight="0.45"
+                android:background="@drawable/text_box_style"
+                android:fontFamily="@font/rubik"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="10"
+                android:singleLine="true"
+                android:textColor="@color/TextColor"
+                android:textCursorDrawable="@drawable/cursor" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.20"
+                android:fontFamily="@font/rubik"
+                android:gravity="start"
+                android:text="Date"
+                android:textAlignment="viewStart"
+                android:textColor="@color/TextColor"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/date_request_form"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+
+                android:layout_margin="10dp"
+                android:layout_weight="0.45"
+                android:background="@drawable/text_box_style"
+                android:fontFamily="@font/rubik"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/TextColor"
+                android:textCursorDrawable="@drawable/cursor" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.20"
+                android:fontFamily="@font/rubik"
+                android:gravity="start"
+                android:text="Full Name"
+                android:textAlignment="viewStart"
+                android:textColor="@color/TextColor"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/first_name_request_form"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_margin="10dp"
+                android:layout_weight="0.45"
+                android:background="@drawable/text_box_style"
+                android:fontFamily="@font/rubik"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/TextColor"
+                android:textCursorDrawable="@drawable/cursor" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.20"
+                android:fontFamily="@font/rubik"
+                android:gravity="start"
+                android:text="Email"
+                android:textAlignment="viewStart"
+                android:textColor="@color/TextColor"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/email_request_form"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_margin="10dp"
+                android:layout_weight="0.45"
+                android:background="@drawable/text_box_style"
+                android:fontFamily="@font/rubik"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/TextColor"
+                android:textCursorDrawable="@drawable/cursor" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.20"
+                android:fontFamily="@font/rubik"
+                android:gravity="start"
+                android:text="Sku Code"
+                android:textAlignment="viewStart"
+                android:textColor="@color/TextColor"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/sku_code_request_form"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_margin="10dp"
+                android:layout_weight="0.45"
+                android:background="@drawable/text_box_style"
+                android:fontFamily="@font/rubik"
+                android:gravity="center"
+                android:singleLine="true"
+                android:inputType="number"
+                android:maxLength="13"
+                android:textColor="@color/TextColor"
+                android:textCursorDrawable="@drawable/cursor" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.20"
+                android:fontFamily="@font/rubik"
+                android:gravity="start"
+                android:text="Sku Name"
+                android:textAlignment="viewStart"
+                android:textColor="@color/TextColor"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/sku_name_request_form"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_margin="10dp"
+                android:layout_weight="0.45"
+                android:background="@drawable/text_box_style"
+                android:fontFamily="@font/rubik"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/TextColor"
+                android:textCursorDrawable="@drawable/cursor" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.20"
+                android:fontFamily="@font/rubik"
+                android:gravity="start"
+                android:text="Sku Quantity"
+                android:textAlignment="viewStart"
+                android:textColor="@color/TextColor"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/sku_quantity"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_margin="10dp"
+                android:layout_weight="0.45"
+                android:background="@drawable/text_box_style"
+                android:fontFamily="@font/rubik"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/TextColor"
+                android:inputType="number"
+                android:textCursorDrawable="@drawable/cursor" />
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.20"
+                android:fontFamily="@font/rubik"
+                android:gravity="start"
+                android:text="Address"
+                android:textAlignment="viewStart"
+                android:textColor="@color/TextColor"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/address_request_form"
+                android:layout_width="0dp"
+                android:layout_height="75dp"
+                android:layout_margin="10dp"
+                android:layout_weight="0.45"
+                android:background="@drawable/text_box_style"
+                android:ellipsize="end"
+                android:fontFamily="@font/rubik"
+                android:gravity="center"
+                android:inputType="textMultiLine"
+                android:paddingLeft="5dp"
+                android:text=""
+                android:textColor="@color/TextColor"
+                android:textCursorDrawable="@drawable/cursor" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.20"
+                android:fontFamily="@font/rubik"
+                android:gravity="start"
+                android:text="Request"
+                android:textAlignment="viewStart"
+                android:textColor="@color/TextColor"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/request_text_form"
+                android:layout_width="0dp"
+                android:layout_height="75dp"
+                android:layout_margin="10dp"
+                android:layout_weight="0.45"
+                android:background="@drawable/text_box_style"
+                android:ellipsize="end"
+                android:fontFamily="@font/rubik"
+                android:gravity="center"
+                android:inputType="textMultiLine"
+                android:paddingLeft="5dp"
+                android:textColor="@color/TextColor"
+                android:textCursorDrawable="@drawable/cursor"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="20dp"
+                android:background="@drawable/cursor"
+                android:fontFamily="@font/rubik"
+                android:text="Submit"
+                android:textColor="@color/OrderTextColor"
+                android:textStyle="bold" />
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/cursor"
+                android:fontFamily="@font/rubik"
+                android:text="New"
+                android:textColor="@color/OrderTextColor"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.20"
+                android:fontFamily="@font/rubik"
+                android:gravity="start"
+                android:text=""
+                android:textAlignment="viewStart"
+                android:textColor="@color/TextColor"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btnSubmit_request_form"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.22"
+                android:background="@drawable/cursor"
+                android:fontFamily="@font/rubik"
+                android:text="Submit"
+                android:textColor="@color/OrderTextColor"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_new_request_form"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="0.22"
+                android:background="@drawable/cursor"
+                android:fontFamily="@font/rubik"
+                android:text="New"
+                android:textColor="@color/OrderTextColor"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>

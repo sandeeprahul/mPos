@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_panel"
+        android:background="#fff">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/order_text_box_style"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/rubik"
+                    android:text="Bill Details"
+                    android:textAlignment="center"
+                    android:textColor="@color/TextColor"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/order_text_box_style"
+                android:gravity="start"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="0.20"
+                        android:fontFamily="@font/rubik"
+                        android:text="Bill No:"
+                        android:textColor="@color/TextColor"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtbillNo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="0.42"
+                        android:fontFamily="@font/rubik"
+                        android:textColor="@color/TextColor" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="0.15"
+                        android:fontFamily="@font/rubik"
+                        android:text="Date"
+                        android:textColor="@color/TextColor"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtdate"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="0.28"
+                        android:fontFamily="@font/rubik"
+                        android:textColor="@color/TextColor" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="start">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/rubik"
+                        android:text="Location Code:"
+                        android:textColor="@color/TextColor"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtlocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/rubik"
+                        android:textColor="@color/TextColor" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/rubik"
+                        android:text="Cashier ID:"
+                        android:textColor="@color/TextColor"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtcashierID"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/rubik"
+                        android:textColor="@color/TextColor" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="0.45"
+                    android:background="@color/OrderTakingBackColor"
+                    android:fontFamily="@font/rubik"
+                    android:gravity="center"
+                    android:text="Item"
+                    android:textColor="@color/OrderTextColor"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="0.10"
+                    android:background="@color/OrderTakingBackColor"
+                    android:fontFamily="@font/rubik"
+                    android:gravity="center"
+                    android:text="Qty"
+                    android:textColor="@color/OrderTextColor"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="0.15"
+                    android:background="@color/OrderTakingBackColor"
+                    android:fontFamily="@font/rubik"
+                    android:gravity="center"
+                    android:text="Mrp"
+                    android:textColor="@color/OrderTextColor"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="0.15"
+                    android:background="@color/OrderTakingBackColor"
+                    android:fontFamily="@font/rubik"
+                    android:gravity="center"
+                    android:text="HGamt"
+                    android:textColor="@color/OrderTextColor"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="0.15"
+                    android:background="@color/OrderTakingBackColor"
+                    android:fontFamily="@font/rubik"
+                    android:gravity="center"
+                    android:text="Total"
+                    android:textColor="@color/OrderTextColor"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <in.hng.mpos.helper.NestedListView
+                    android:id="@+id/listv"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/order_text_box_style"
+                    android:cacheColorHint="@color/OrderTakingBackColor"
+                    android:divider="@color/OrderTakingBackColor"
+                    android:dividerHeight="2dp"
+                    android:minHeight="50dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottom_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/order_text_box_style"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/pbLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/txtPBcoupncode"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="0.60"
+                android:background="@drawable/text_box_style"
+                android:fontFamily="@font/rubik"
+                android:gravity="center"
+                android:hint="Do you have any coupon? Enter it here"
+                android:textColor="@color/TextColor"
+                android:textColorHint="#ffcf93"
+                android:textSize="12sp" />
+
+            <Button
+                android:id="@+id/Applycoupn"
+                android:layout_width="0dp"
+                android:layout_height="33sp"
+                android:layout_gravity="center"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="0.15"
+                android:background="#FA8C01"
+                android:fontFamily="@font/rubik"
+                android:text="Apply"
+                android:textColor="@color/TextColor"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="start">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="0.20"
+                android:fontFamily="@font/rubik"
+                android:text="Total Qty:"
+                android:textColor="@color/TextColor"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txttotalQty"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.06"
+                android:fontFamily="@font/rubik"
+                android:text="100"
+                android:textColor="@color/TextColor"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.22"
+                android:fontFamily="@font/rubik"
+                android:text="SKU Count:"
+                android:textColor="@color/TextColor"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtSkuCount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.06"
+                android:fontFamily="@font/rubik"
+                android:text="100"
+                android:textColor="@color/TextColor"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.10"
+                android:fontFamily="@font/rubik"
+                android:text="Disc:"
+                android:textColor="@color/TextColor"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/txtdiscamt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="0.15"
+                android:fontFamily="@font/rubik"
+                android:text="123.000"
+                android:textColor="@color/TextColor"
+                android:textSize="14sp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="start"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="0.25"
+                android:fontFamily="@font/rubik"
+                android:text="Lylty Disc:"
+                android:textColor="@color/TextColor"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtloyaldisc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="0.15"
+                android:fontFamily="@font/rubik"
+                android:textAlignment="center"
+                android:textColor="@color/TextColor"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.30"
+                android:fontFamily="@font/rubik"
+                android:text="Coupon Disc:"
+                android:textColor="@color/TextColor"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtCoupondisc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="0.20"
+                android:fontFamily="@font/rubik"
+                android:textAlignment="center"
+                android:textColor="@color/TextColor"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="start">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="0.25"
+                android:fontFamily="@font/rubik"
+                android:text="Bill Amount:"
+                android:textColor="@color/TextColor"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txttotalAmt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.40"
+                android:fontFamily="@font/rubik"
+                android:textColor="@color/TextColor"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSubmit"
+                android:layout_width="0dp"
+                android:layout_height="35sp"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.35"
+                android:background="@color/OrderTakingBackColor"
+                android:fontFamily="@font/rubik"
+                android:onClick="SubmitOrder"
+                android:text="Submit"
+                android:textColor="@color/OrderTextColor"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/BillCancel"
+                android:layout_width="0dp"
+                android:layout_height="35sp"
+                android:layout_marginStart="10dp"
+                android:layout_weight="0.35"
+                android:background="@color/OrderTakingBackColor"
+                android:fontFamily="@font/rubik"
+                android:text="Cancel"
+                android:textColor="@color/TextColor"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/BillNew"
+                android:layout_width="0dp"
+                android:layout_height="35sp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="0.35"
+                android:background="@color/OrderTakingBackColor"
+                android:enabled="false"
+                android:fontFamily="@font/rubik"
+                android:text="New"
+                android:textColor="@color/TextColor"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

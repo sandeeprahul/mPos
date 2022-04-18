@@ -1,0 +1,13 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item><layer-list>
+        <item><shape>
+
+            <padding android:bottom="3dp" android:left="3dp" android:right="3dp" android:top="3dp" />
+        </shape></item>
+        <item>
+            <bitmap android:gravity="right" android:src="@drawable/edit"/>
+        </item>
+    </layer-list></item>
+
+</selector>

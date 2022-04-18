@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="5dp"
+    android:textColor="@color/TextColor">
+
+    <TextView
+        android:id="@+id/txtSkuName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.45"
+        android:textColor="@color/TextColor"
+        android:textSize="12sp" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/TextColor" />
+
+    <TextView
+        android:id="@+id/txtqty"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.10"
+        android:textAlignment="center"
+        android:textColor="@color/TextColor"
+        android:textSize="12sp" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/TextColor" />
+
+    <TextView
+        android:id="@+id/txtmrp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.15"
+        android:textAlignment="center"
+        android:textColor="@color/TextColor"
+        android:textSize="12sp" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/TextColor" />
+
+    <TextView
+        android:id="@+id/txtdiscmrp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.15"
+        android:textAlignment="center"
+        android:textColor="@color/TextColor"
+        android:textSize="12sp" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/TextColor" />
+
+    <TextView
+        android:id="@+id/txttotmrp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.15"
+        android:textAlignment="center"
+        android:textColor="@color/TextColor"
+        android:textSize="12sp" />
+
+</LinearLayout>

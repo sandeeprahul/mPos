@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#ff9e24</color>
+
+    <color name="TextColor">#000000</color>
+    <color name="ActionBarColor">#fa8c01</color>
+    <color name="color_primary">#ff9e24</color>
+    <color name="StatusbarColor">#ff9e24</color>
+    <color name="OrderTakingBackColor">#1e1e1e</color>
+    <color name="OrderTextColor">#ffffff</color>
+    <color name="OrderLightColor">#B6B6B6</color>
+    <color name="black">#000</color>
+    <color name="lblack">#333</color>
+    <color name="white">#FFF</color>
+    <color name="stylecolor">#070707</color>
+</resources>

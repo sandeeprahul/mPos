@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/startview"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/tvSkuCode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.15"
+            android:fontFamily="@font/rubik"
+            android:gravity="center"
+            android:text="Code"
+            android:textColor="@color/TextColor"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvItemName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.40"
+            android:fontFamily="@font/rubik"
+            android:gravity="center"
+            android:text="Item"
+            android:textColor="@color/TextColor"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvQty"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.10"
+            android:fontFamily="@font/rubik"
+            android:gravity="center"
+            android:text="Qty"
+            android:textColor="@color/TextColor"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvMrp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.15"
+            android:fontFamily="@font/rubik"
+            android:gravity="center"
+            android:text="Mrp"
+            android:textColor="@color/TextColor"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvHGamt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.15"
+            android:fontFamily="@font/rubik"
+            android:gravity="center"
+            android:text="HGamt"
+            android:textColor="@color/TextColor"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvTotalAmount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.15"
+            android:fontFamily="@font/rubik"
+            android:gravity="center"
+            android:text="Total"
+            android:textColor="@color/TextColor"
+            android:textSize="12sp" />
+
+        <View
+            android:id="@+id/endview"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/black" />
+</LinearLayout>

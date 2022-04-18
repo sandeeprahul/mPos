@@ -1,0 +1,78 @@
+<resources>
+    <string name="app_name">HnG mPOS</string>
+    <string name="API_URL2">http://10.46.16.18/selfcheck/api/checkout/</string>
+<!--
+            <string name="API_URL">http://43.254.160.190/selfcheck/api/checkout/</string>
+-->
+    <string name="API_URL_">http://36.255.252.199/selfcheck/api/checkout/</string> <!--production Url-->
+    <string name="API_URL">http://199.healthandglowonline.in/selfcheck_uat/api/checkout/</string> <!--production Url-->
+
+    <!--<string name="API_URL">http://199.healthandglowonline.in/selfcheck/api/checkout/</string>-->
+    <string name="API_URL_live">http://35.200.223.104/selfcheck/api/checkout/</string>
+<!--    <string name="API_URL">http://199.healthandglow.in/selfcheck/api/checkout/</string>-->
+    <string name="API_URL____">http://199.healthandglowonline.in/selfcheck/api/checkout/</string>
+    <string name="API_URL3">http://103.210.72.94/api/checkout/</string>
+    <string name="API_URL1">https://healthandglowonline.ind.in/selfcheck/api/checkout/</string>
+    <string name="ZagURL">http://182.72.148.155/api/v1/cards/</string>
+    <string name="ppURL">https://mercury-uat.phonepe.com/v3/</string>
+    <string name="mkURL"> https://walletapi.mobikwik.com/walletapis/marketplace/debitwallet</string>
+    <string name="bt_not_supported">Device does not support Bluetooth</string>
+    <string name="ready_for_conn">Ready for Connection</string>
+    <string name="printer_not_conn">printer not connected</string>
+    <string name="printer_connecting">printer connecting ...</string>
+    <string name="printer_connected">printer connected</string>
+    <string name="printer_saved">Printer Saved as Favorite</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_printer">Printer Settings</string>
+    <string name="action_declaration">Cash Declaration</string>
+    <string name="action_order_taking">Take Order</string>
+    <string name="action_edc_settings">Card Settings</string>
+    <string name="Zaggle_heading">Zaggle Settings</string>
+    <string name="action_logout">Logout</string>
+    <string name="Open">open</string>
+    <string name="Close">close</string>
+    <string name="scan_bar_code">Scan a Bar Code</string>
+    <string-array name="Card_arrays">
+        <item>ICICI</item>
+        <item>AMEX</item>
+    </string-array>
+    <string-array name="EDC_arrays">
+        <item>ICICI</item>
+        <item>AMEX</item>
+    </string-array>
+    <string name="title_activity_order_information">OrderInformation</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+
+    <string name="toast_1">Transaction print,use the AIDL mode!</string>
+    <string name="toast_2">The service has been disconnected!</string>
+    <string name="toast_3">Bluetooth device is unavailable</string>
+    <string name="toast_4">Bluetooth device not detected. Please open Bluetooth!</string>
+    <string name="toast_5">Not Found InnterPrinter!</string>
+    <string name="toast_6">Bluetooth connect failed!</string>
+    <string name="toast_7"> Only a single Qr code is printed for the AIDL mode</string>
+    <string name="toast_8">Now QrCode size must be less than 7!</string>
+    <string name="toast_9">BarCode type or conent error!</string>
+    <string name="toast_10">Please set the printer as black label mode!</string>
+    <string name="toast_11">Settings->System->Advanced->InnerPrinter-> set black mark
+        function</string>
+    <string name="toast_12">Please set the printer to label mode!</string>
+
+
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+    <string name="title_activity_loyalty">h&amp;g mPOS - Billing</string>
+    <string name="print_footer">Hey! Hope you had a wonderful shopping experience. Guess what we\'ve gone Self-checkout, Click &amp; collect, Express delivery, Store to door &amp; many more customer-friendly options to explore! Follow us on Instagram, Youtube and Facebook.</string>
+    <string name="Rs">\u20B9</string>
+    <string name="good_sold_can_be_exchanged_within_15days_from_date_of_purchase_and_no_cash_refunds">Good sold can be exchanged within 15days \nfrom date of purchase and no cash refunds</string>
+</resources>

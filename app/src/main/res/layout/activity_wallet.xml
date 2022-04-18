@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_panel"
+        android:background="#fff">
+
+        <LinearLayout
+            android:id="@+id/linearLayoutPymnt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8"
+                    android:gravity="end"
+                    android:paddingEnd="5dp"
+                    android:text="Balance Amount:"
+                    android:textColor="@color/TextColor"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtBal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:gravity="center"
+                    android:text="1000.00"
+                    android:textColor="@color/TextColor"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/text_box_style"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/ButtoPaytm"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="160dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="17dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/paytm"
+                    android:onClick="LoadPaytmLayout" />
+
+
+                <LinearLayout
+                    android:id="@+id/LytPayTm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:visibility="gone">
+
+                    <EditText
+                        android:id="@+id/txtPayTmAmt"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="0.25"
+                        android:background="@drawable/text_box_style"
+                        android:gravity="center"
+                        android:hint="Amount"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:textColor="@color/TextColor"
+                        android:textColorHint="#6d6d6d"
+                        android:textSize="12sp" />
+
+                    <EditText
+                        android:id="@+id/txtPayTmOTP"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.25"
+                        android:background="@drawable/text_box_style"
+                        android:gravity="center"
+                        android:hint="Otp"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:textColor="@color/TextColor"
+                        android:textColorHint="#6d6d6d"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/RedeemPayTm"
+                        android:layout_width="0dp"
+                        android:layout_height="35sp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="0.25"
+                        android:background="#FA8C01"
+                        android:onClick="RedeemPTmamount"
+                        android:text="Process"
+                        android:textColor="@color/TextColor"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/text_box_style"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/ButtonPP"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="110dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/phonepe"
+                    android:onClick="LoadPPlayout" />
+
+                <LinearLayout
+                    android:id="@+id/LytPPredeem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:visibility="gone">
+
+                    <EditText
+                        android:id="@+id/txtPPAmt"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="0.25"
+                        android:background="@drawable/text_box_style"
+                        android:gravity="center"
+                        android:hint="Amount"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:textColor="@color/TextColor"
+                        android:textColorHint="#6d6d6d"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/RedeemPP"
+                        android:layout_width="0dp"
+                        android:layout_height="35sp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.25"
+                        android:background="#FA8C01"
+                        android:onClick="RedeemPPamount"
+                        android:text="Process"
+                        android:textColor="@color/TextColor"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnPPstatus"
+                        android:layout_width="0dp"
+                        android:layout_height="35sp"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="0.25"
+                        android:background="#FA8C01"
+                        android:enabled="false"
+                        android:onClick="CheckPPstatus"
+                        android:text="check status"
+                        android:textColor="@color/TextColor"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/text_box_style"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/ButtonMK"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="110dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/mobik"
+                    android:onClick="LoadMKlayout" />
+
+                <LinearLayout
+                    android:id="@+id/LytMKredeem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:visibility="gone">
+
+                    <EditText
+                        android:id="@+id/txtMKAmt"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="0.25"
+                        android:background="@drawable/text_box_style"
+                        android:gravity="center"
+                        android:hint="Amount"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:textColor="@color/TextColor"
+                        android:textColorHint="#6d6d6d"
+                        android:textSize="12sp" />
+
+                    <EditText
+                        android:id="@+id/txtMKOtp"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.25"
+                        android:background="@drawable/text_box_style"
+                        android:gravity="center"
+                        android:hint="Otp"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:textColor="@color/TextColor"
+                        android:textColorHint="#6d6d6d"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/RedeemMK"
+                        android:layout_width="0dp"
+                        android:layout_height="35sp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="0.25"
+                        android:background="#FA8C01"
+                        android:onClick="RedeemMKamount"
+                        android:text="Process"
+                        android:textColor="@color/TextColor"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/text_box_style"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/ButtonPhonePe"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="110dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="5dp"
+                    android:onClick="LoadPhonePelayout"
+                    android:text="PhonePe UPI"
+                    android:textColor="@color/black"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_phonepe_upi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:visibility="gone">
+
+                    <EditText
+                        android:id="@+id/et_phonepe_wallet_amount"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="0.25"
+                        android:background="@drawable/text_box_style"
+                        android:gravity="center"
+                        android:hint="Amount"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:textColor="@color/TextColor"
+                        android:textColorHint="#6d6d6d"
+                        android:textSize="12sp" />
+
+                    <Button
+                        android:id="@+id/btn_generate_qr"
+                        android:layout_width="0dp"
+                        android:layout_height="35sp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="0.25"
+                        android:background="#FA8C01"
+                        android:onClick="generateQRCode"
+                        android:text="Generate QR"
+                        android:textColor="@color/TextColor"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/text_box_style"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <Button
+                    android:id="@+id/ButtonTest"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="160dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/zag"
+                    android:onClick="LoadZagLayout" />
+
+                <LinearLayout
+                    android:id="@+id/ZaggleLyt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:gravity="center">
+
+                        <EditText
+                            android:id="@+id/txtcardno"
+                            android:layout_width="0dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="0.35"
+                            android:background="@drawable/text_box_style"
+                            android:gravity="center"
+                            android:hint="Card Number"
+                            android:inputType="number"
+                            android:maxLength="16"
+                            android:textColor="@color/TextColor"
+                            android:textColorHint="#6d6d6d"
+                            android:textSize="12sp" />
+
+                        <Button
+                            android:id="@+id/Applycoupn"
+                            android:layout_width="0dp"
+                            android:layout_height="35sp"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_weight="0.25"
+                            android:background="#FA8C01"
+                            android:onClick="CheckZaggleBalance"
+                            android:text="Check Balance"
+                            android:textColor="@color/TextColor"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:gravity="start"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.4"
+                            android:text="Available Balance:"
+                            android:textColor="@color/TextColor"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/txtZaggleBal"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="0.30"
+                            android:enabled="false"
+                            android:textColor="@color/TextColor"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/LytZagRedeem"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <EditText
+                            android:id="@+id/txtZaggleAmt"
+                            android:layout_width="0dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="0.35"
+                            android:background="@drawable/text_box_style"
+                            android:enabled="false"
+                            android:gravity="center"
+                            android:hint="Amount"
+                            android:inputType="number"
+                            android:textColor="@color/TextColor"
+                            android:textColorHint="#6d6d6d"
+                            android:textSize="12sp" />
+
+                        <EditText
+                            android:id="@+id/txtZaggleOTP"
+                            android:layout_width="0dp"
+                            android:layout_height="35dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="0.35"
+                            android:background="@drawable/text_box_style"
+                            android:enabled="false"
+                            android:gravity="center"
+                            android:hint="Pin/OTP"
+                            android:inputType="number"
+                            android:textColor="@color/TextColor"
+                            android:textColorHint="#6d6d6d"
+                            android:textSize="12sp" />
+
+                        <Button
+                            android:id="@+id/RedeemZaggle"
+                            android:layout_width="0dp"
+                            android:layout_height="35sp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="0.25"
+                            android:background="#FA8C01"
+                            android:enabled="false"
+                            android:onClick="RedeemZagAmount"
+                            android:text="Redeem"
+                            android:textColor="@color/TextColor"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="5dp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:gravity="center">
+
+                        <CheckBox
+                            android:id="@+id/chckZagOTP"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_weight="0.20"
+                            android:enabled="false"
+                            android:text="Generate OTP"
+                            android:textColor="@color/TextColor"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.30"
+                            android:gravity="start"
+                            android:onClick="ResetZagMenu"
+                            android:text="Reset"
+                            android:textColor="#FA8C01"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/wallet_header"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal"
+                android:textColor="@color/TextColor">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25"
+                    android:background="#FA8C01"
+                    android:gravity="center"
+                    android:text="Wallet ID"
+                    android:textColor="@color/TextColor"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.35"
+                    android:background="#FA8C01"
+                    android:gravity="center"
+                    android:text="Wallet"
+                    android:textAlignment="center"
+                    android:textColor="@color/TextColor"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txtwalletAmount"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.25"
+                    android:background="#FA8C01"
+                    android:gravity="center"
+                    android:text="Wallet Amount"
+                    android:textAlignment="center"
+                    android:textColor="@color/TextColor"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+
+                <in.hng.mpos.helper.NestedListView
+                    android:id="@+id/listv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/text_box_style"
+                    android:cacheColorHint="#FA8C01"
+                    android:divider="#FA8C01"
+                    android:dividerHeight="2dp"
+                    android:minHeight="50dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottom_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btnproceed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="#FA8C01"
+                android:onClick="SubmitWallet"
+                android:text="submit"
+                android:textColor="@color/TextColor"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/text_box_style"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/rubik"
+                    android:text="Printer Settings"
+                    android:textAlignment="center"
+                    android:textColor="@color/TextColor"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/text_box_style"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="0.50"
+                        android:fontFamily="@font/rubik"
+                        android:gravity="start"
+                        android:text="Printer Name:"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/TextColor"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtprinterName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="0.50"
+                        android:fontFamily="@font/rubik"
+                        android:gravity="start"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/TextColor"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="0.50"
+                        android:fontFamily="@font/rubik"
+                        android:gravity="start"
+                        android:text="Printer ID:"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/TextColor"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtprinterID"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="0.50"
+                        android:fontFamily="@font/rubik"
+                        android:gravity="start"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/TextColor"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="0.50"
+                        android:fontFamily="@font/rubik"
+                        android:gravity="start"
+                        android:text="Status:"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/TextColor"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtprinterStatus"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="0.50"
+                        android:fontFamily="@font/rubik"
+                        android:gravity="start"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/TextColor"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="0.50"
+                        android:fontFamily="@font/rubik"
+                        android:gravity="start"
+                        android:text="Please select the Printer"
+                        android:textColor="@color/TextColor"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="0.50"
+                        android:fontFamily="@font/rubik"
+                        android:gravity="start"
+                        android:text="Rugtek Printer"
+                        android:textColor="@color/TextColor"
+                        android:textSize="16sp" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/rugtek_check"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="0.2"
+                        android:checked="false"
+                        android:theme="@style/MySwitch" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="0.50"
+                        android:fontFamily="@font/rubik"
+                        android:gravity="start"
+                        android:text="NGX Printer"
+                        android:textColor="@color/TextColor"
+                        android:textSize="16sp" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/NGX_check"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="0.2"
+                        android:checked="false"
+                        android:theme="@style/MySwitch" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ngx_lyt"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/connectNGX"
+                        android:layout_width="0dp"
+                        android:layout_height="32sp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight=".25"
+                        android:background="@drawable/button_style"
+                        android:fontFamily="@font/rubik"
+                        android:text="Connect"
+                        android:textColor="@color/TextColor" />
+
+                    <Button
+                        android:id="@+id/unpairNGX"
+                        android:layout_width="0dp"
+                        android:layout_height="32sp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight=".25"
+                        android:background="@drawable/button_style"
+                        android:fontFamily="@font/rubik"
+                        android:text="unpair"
+                        android:textColor="@color/TextColor" />
+
+                    <Button
+                        android:id="@+id/clearNGX"
+                        android:layout_width="0dp"
+                        android:layout_height="32sp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight=".25"
+                        android:background="@drawable/button_style"
+                        android:fontFamily="@font/rubik"
+                        android:text="clear"
+                        android:textColor="@color/TextColor">
+
+                    </Button>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="0.50"
+                        android:fontFamily="@font/rubik"
+                        android:gravity="start"
+                        android:text="Exel Printer"
+                        android:textColor="@color/TextColor"
+                        android:textSize="16sp" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/Exel_check"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="0.2"
+                        android:checked="false"
+                        android:theme="@style/MySwitch" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/exel_lyt"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/connectExel"
+                        android:layout_width="0dp"
+                        android:layout_height="32sp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight=".25"
+                        android:background="@drawable/button_style"
+                        android:fontFamily="@font/rubik"
+                        android:text="Connect"
+                        android:textColor="@color/TextColor" />
+
+                    <Button
+                        android:id="@+id/clearExel"
+                        android:layout_width="0dp"
+                        android:layout_height="32sp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight=".25"
+                        android:background="@drawable/button_style"
+                        android:fontFamily="@font/rubik"
+                        android:text="clear"
+                        android:textColor="@color/TextColor">
+
+                    </Button>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottom_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cancelPrinter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="#FA8C01"
+            android:fontFamily="@font/rubik"
+            android:text="Submit"
+            android:textColor="@color/TextColor"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</RelativeLayout>

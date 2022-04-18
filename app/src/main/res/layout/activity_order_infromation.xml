@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MarketPlace.OrderInfromation">
+    
+    <RelativeLayout
+        android:id="@+id/loyalty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff">
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom_panel">
+            
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/lytTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/text_box_style"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/rubik"
+                        android:text="Order Details"
+                        android:textAlignment="center"
+                        android:textColor="@color/TextColor"
+                       android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@drawable/text_box_style"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="0.20"
+                        android:fontFamily="@font/rubik"
+                        android:gravity="start"
+                        android:text="Order Id"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/TextColor"
+                       android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/et_orderinfo_orderid"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="10dp"
+                        android:layout_weight="0.45"
+                        android:background="@drawable/text_box_style"
+                        android:fontFamily="@font/rubik"
+                        android:gravity="center"
+                        android:inputType="text"
+                        android:maxLength="10"
+                        android:singleLine="true"
+                        android:textColor="@color/TextColor"
+                        android:textCursorDrawable="@drawable/cursor" />
+
+                    <Button
+                        android:id="@+id/loyalEdit"
+                        android:layout_width="0dp"
+                        android:layout_height="35sp"
+                        android:layout_marginLeft="10sp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="0.15"
+                        android:background="@drawable/gradient_edit"
+                        android:fontFamily="@font/rubik"
+                        android:textColor="#fff"
+                        android:textStyle="bold"
+                        android:visibility="invisible"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lytCustDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@drawable/text_box_style"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/lytTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/text_box_style"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/rubik"
+                            android:text="Partners"
+                            android:textAlignment="center"
+                            android:textColor="@color/TextColor"
+                           android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <RadioGroup
+                        android:id="@+id/rg_orderinfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </ScrollView>
+
+
+        <LinearLayout
+            android:id="@+id/bottom_panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_market_proceed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="#FA8C01"
+                android:fontFamily="@font/rubik"
+                android:text="Proceed"
+                android:textColor="@color/TextColor"
+                android:textStyle="bold"/>
+
+            <Button
+                android:id="@+id/btncancel"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:background="#FA8C01"
+                android:fontFamily="@font/rubik"
+                android:text="Cancel"
+                android:textColor="@color/TextColor"
+                android:visibility="gone"
+                android:textStyle="bold">
+
+            </Button>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff">
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/text_box_style"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/rubik"
+                    android:text="Zaggle Gift Card Settings"
+                    android:textAlignment="center"
+                    android:textColor="@color/TextColor"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/text_box_style"
+                android:focusableInTouchMode="true"
+                android:gravity="center"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight="0.35"
+                        android:fontFamily="@font/rubik"
+                        android:gravity="start"
+                        android:text="Card Number"
+                        android:textColor="@color/TextColor"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/txtZagCardNo"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="10dp"
+                        android:layout_weight="0.70"
+                        android:background="@drawable/text_box_style"
+                        android:fontFamily="@font/rubik"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:maxLength="16"
+                        android:singleLine="true"
+                        android:textColor="@color/TextColor"
+                        android:textCursorDrawable="@drawable/cursor" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="0.18"
+                        android:fontFamily="@font/rubik"
+                        android:gravity="start"
+                        android:text="Mobile"
+                        android:textColor="@color/TextColor"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/txtZagMobNo"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_weight="0.45"
+                        android:background="@drawable/text_box_style"
+                        android:fontFamily="@font/rubik"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:singleLine="true"
+                        android:textColor="@color/TextColor"
+                        android:textCursorDrawable="@drawable/cursor" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="0.20"
+                        android:fontFamily="@font/rubik"
+                        android:gravity="start"
+                        android:text="Amount"
+                        android:textColor="@color/TextColor"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/txtZagAmt"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="0.20"
+                        android:background="@drawable/text_box_style"
+                        android:fontFamily="@font/rubik"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:singleLine="true"
+                        android:textColor="@color/TextColor"
+                        android:textCursorDrawable="@drawable/cursor" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginBottom="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnZagActivate"
+                        android:layout_width="0dp"
+                        android:layout_height="35sp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight=".33"
+                        android:background="@color/color_primary"
+                        android:fontFamily="@font/rubik"
+                        android:onClick="ActivateZaggleCard"
+                        android:text="Activate"
+                        android:textAllCaps="false"
+                        android:textColor="@color/TextColor"
+                        android:textStyle="bold"/>
+
+                    <Button
+                        android:id="@+id/btnZagBal"
+                        android:layout_width="0dp"
+                        android:layout_height="35sp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight=".40"
+                        android:background="@color/color_primary"
+                        android:fontFamily="@font/rubik"
+                        android:onClick="CheckZaggleBalance"
+                        android:text="Check Balance"
+                        android:textAllCaps="false"
+                        android:textColor="@color/TextColor"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/clearZagBal"
+                        android:layout_width="0dp"
+                        android:layout_height="35sp"
+                        android:layout_marginRight="10dp"
+                        android:layout_weight=".33"
+                        android:background="@color/color_primary"
+                        android:fontFamily="@font/rubik"
+                        android:onClick="ClearData"
+                        android:text="clear"
+                        android:textAllCaps="false"
+                        android:textColor="@color/TextColor"
+                        android:textStyle="bold"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

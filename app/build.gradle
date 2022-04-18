@@ -1,0 +1,136 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'io.fabric'
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'hngmpos key'
+            keyPassword 'He@lth@1234'
+            storeFile file('Users/Sunny/SanielSoft/mPOSApp/mPOS.jks')
+//            storeFile file('D:/HnG_WorkSpace/mPOSApp/mPOS.jks')
+            storePassword 'He@lth@1234'
+        }
+    }
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    useLibrary 'org.apache.http.legacy'
+    defaultConfig {
+
+        configurations.all {
+            resolutionStrategy { force 'androidx.core:core:1.6.0' }
+        }
+        applicationId "in.hng.mpos"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        multiDexEnabled true
+        versionName "2.4.7" //changed from 2.3.8 to 2.3.6 - 2.3.9 - 2.4.0 - 2.4.1 - 2.4.2 - 2.4.3 - new 2.4.4
+        ndk {
+            abiFilters "arm64-v8a", "armeabi-v7a"
+            ndk.abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86' ,'x86_64'
+
+        }
+
+        sourceSets {
+            main {
+                jniLibs.srcDirs = ['src/main/jniLibs']
+                assets.srcDirs = ['src/main/assets', 'src/main/assets/']
+            }
+        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        lintOptions {
+            checkReleaseBuilds false
+            // Or, if you prefer, you can continue to check for errors in release builds,
+            // but continue the build even when errors are found:
+            abortOnError false
+        }
+        signingConfig signingConfigs.config
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "com.google.android.material:material:1.2.0-alpha04"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    implementation 'com.google.firebase:firebase-core:17.2.2'
+    implementation 'com.google.firebase:firebase-core:17.2.2'
+    implementation 'com.sunmi:sunmiui:1.1.27'
+    //zxing to generate barcode
+    implementation files('libs/core-3.3.0.jar')
+    implementation 'com.sunmi:printerlibrary:1.0.14'
+    implementation 'androidx.multidex:multidex:2.0.1'
+    // (Recommended) Add Analytics
+    implementation 'com.google.firebase:firebase-analytics:17.2.2'
+
+    implementation('com.journeyapps:zxing-android-embedded:4.1.0') { transitive = false }
+    // implementation 'com.google.zxing:core:3.4.0'
+
+    //implementation 'com.journeyapps:zxing-android-integration:2.0.1@aar'
+    //implementation 'com.journeyapps:zxing-android-embedded:3.6.0@aar'
+    //implementation 'com.journeyapps:zxing-android-legacy:2.0.1@aar'
+    implementation 'com.android.volley:volley:1.1.1'
+    implementation 'com.facebook.stetho:stetho:1.4.1'
+    implementation 'com.facebook.stetho:stetho-okhttp:1.4.1'
+    implementation 'com.squareup.okhttp:okhttp:2.7.2'
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.pranavpandey.android:dynamic-utils:4.4.1'
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation files('libs/unipayNext_v5.0.1.jar')
+    implementation files('libs/ngx_btp120_320_sdk_1.0.7r2.jar')
+    implementation files('libs/cie-bluetooth-printer-sdk-v2.1.5.jar')
+    implementation(name: 'ezetapandroidsdk_2_3', ext: 'aar')
+    implementation files('libs/activation.jar')
+    implementation files('libs/additionnal.jar')
+    implementation files('libs/mail.jar')
+    implementation files('libs/core-3.3.0.jar')
+    implementation 'com.google.guava:guava:24.1-jre'
+
+
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.6@aar') {
+        transitive = true;
+    }
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+
+    implementation fileTree(dir: 'jniLibs', include: ['*.so'])
+
+    implementation files('libs/CoreWise_EMVReader_SDK_V1.3.jar')
+    implementation files('libs/idcardapi.jar')
+    implementation files('libs/pos_1.6.jar')
+
+    implementation platform('com.google.firebase:firebase-bom:26.7.0')
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics'
+}
+apply plugin: 'com.google.gms.google-services'

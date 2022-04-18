@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Assisted Order">
+        <menu>
+            <item
+                android:id="@+id/nav_MarketPlace"
+                android:icon="@drawable/ic_marketpace"
+                android:title="Market Place" />
+            <item
+                android:id="@+id/nav_placeOrder"
+                android:icon="@drawable/placeorder"
+                android:title="Place Order" />
+            <item
+                android:id="@+id/nav_processOrder"
+                android:icon="@drawable/processorder"
+                android:title="Process Order"/>
+
+            <item
+                android:id="@+id/nav_generateInvoice"
+                android:icon="@drawable/generateinvoice"
+                android:title="Generate Invoice"/>
+
+            <item
+                android:id="@+id/nav_manual_billing"
+                android:icon="@drawable/ic_manual_bill"
+                android:title="Manual Billing"/>
+
+            <item
+                android:id="@+id/nav_regularize_manual_bill"
+                android:icon="@drawable/ic_manual_bill"
+                android:title="Regularize Manual Bill"/>
+
+            <item
+                android:id="@+id/nav_customer_related"
+                android:icon="@drawable/ic_customer_feedback"
+                android:title="Customer Related"/>
+        </menu>
+    </item>
+
+</menu>
