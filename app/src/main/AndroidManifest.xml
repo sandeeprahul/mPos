@@ -146,6 +146,7 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+        <service android:name="net.posprinter.service.PosprinterService" />
 
         <provider
             android:name="com.ezetap.sdk.EzetapFileProvider"

@@ -6,10 +6,12 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -22,6 +24,7 @@ import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
 import android.preference.PreferenceManager;
 import android.text.Layout;
@@ -80,6 +83,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.List;
 
 import android_serialport_api.PrinterAPI;
 import android_serialport_api.SerialPortManager;
@@ -116,6 +120,13 @@ import static com.cie.btp.BtpConsts.RECEIPT_PRINTER_NOT_CONNECTED;
 import static com.cie.btp.BtpConsts.RECEIPT_PRINTER_NOT_FOUND;
 import static com.cie.btp.BtpConsts.RECEIPT_PRINTER_SAVED;
 import static com.cie.btp.BtpConsts.RECEIPT_PRINTER_STATUS;
+
+import net.posprinter.posprinterface.IMyBinder;
+import net.posprinter.posprinterface.ProcessData;
+import net.posprinter.posprinterface.TaskCallback;
+import net.posprinter.utils.BitmapProcess;
+import net.posprinter.utils.BitmapToByteData;
+import net.posprinter.utils.DataForSendToPrinterPos80;
 
 /**
  * Created by Cbly on 22-Mar-18.
@@ -183,6 +194,21 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
                 default:
                     break;
             }
+        }
+    };
+
+    public static IMyBinder myBinder;
+
+    ServiceConnection mSerconnection= new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            myBinder= (IMyBinder) service;
+            android.util.Log.e("myBinder","connect");
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            android.util.Log.e("myBinder","disconnect");
         }
     };
 
@@ -324,7 +350,7 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
                     }
                 } else {
                     Log.e("isRugtek","isRugtek:False");
-
+                    printBitmap();
                     if (net.isConnectingToInternet()) {
 
                         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -491,6 +517,41 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
         //return the bitmap
         return returnedBitmap;
     }
+
+    private void printBitmap(){
+
+        final Bitmap bitmap1 =  createBitmapFromView(PrintViewRugtek,0,0);
+
+
+            WebViewEbill.myBinder.WriteSendData(new TaskCallback() {
+                @Override
+                public void OnSucceed() {
+                    Toast.makeText(getApplicationContext(),"Connection success",Toast.LENGTH_SHORT).show();
+
+                }
+
+                @Override
+                public void OnFailed() {
+                    Toast.makeText(getApplicationContext(),"Connection failed",Toast.LENGTH_SHORT).show();
+                }
+            }, new ProcessData() {
+                @Override
+                public List<byte[]> processDataBeforeSend() {
+                    List<byte[]> list = new ArrayList<>();
+                    list.add(DataForSendToPrinterPos80.initializePrinter());
+                    List<Bitmap> blist= new ArrayList<>();
+                    blist = BitmapProcess.cutBitmap(50,bitmap1);
+                    for (int i= 0 ;i<blist.size();i++){
+                        list.add(DataForSendToPrinterPos80.printRasterBmp(0,blist.get(i), BitmapToByteData.BmpType.Threshold, BitmapToByteData.AlignType.Center,384));
+                    }
+//                    list.add(StringUtils.strTobytes("1234567890qwertyuiopakjbdscm nkjdv mcdskjb"));
+                    list.add(DataForSendToPrinterPos80.printAndFeedLine());
+                    return list;
+                }
+            });
+
+    }
+
 
     private void LoadPrintData() {
         dialog = ProgressDialog.show(WebViewEbill.this, "",

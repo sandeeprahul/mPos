@@ -27,6 +27,9 @@ android {
             storePassword 'He@lth@1234'
         }
     }
+    packagingOptions {
+        exclude 'AndroidManifest.xml'
+    }
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     useLibrary 'org.apache.http.legacy'
@@ -132,5 +135,7 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:26.7.0')
     implementation 'com.google.firebase:firebase-crashlytics'
     implementation 'com.google.firebase:firebase-analytics'
+    implementation files('libs/PosPrinterSDK.jar')
+
 }
 apply plugin: 'com.google.gms.google-services'
