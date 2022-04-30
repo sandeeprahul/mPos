@@ -121,12 +121,17 @@ import static com.cie.btp.BtpConsts.RECEIPT_PRINTER_NOT_FOUND;
 import static com.cie.btp.BtpConsts.RECEIPT_PRINTER_SAVED;
 import static com.cie.btp.BtpConsts.RECEIPT_PRINTER_STATUS;
 
+
+import static in.hng.mpos.activity.PrinterActivity.ISCONNECT;
+
 import net.posprinter.posprinterface.IMyBinder;
 import net.posprinter.posprinterface.ProcessData;
 import net.posprinter.posprinterface.TaskCallback;
+import net.posprinter.service.PosprinterService;
 import net.posprinter.utils.BitmapProcess;
 import net.posprinter.utils.BitmapToByteData;
 import net.posprinter.utils.DataForSendToPrinterPos80;
+import net.posprinter.utils.DataForSendToPrinterTSC;
 
 /**
  * Created by Cbly on 22-Mar-18.
@@ -160,7 +165,7 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
     private LinearLayout printlayout, PrintViewRugtek;
     String fromActivity = "", userMobileNumber = "";
 
-    @SuppressLint("HandlerLeak")
+  /*  @SuppressLint("HandlerLeak")
     private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -195,27 +200,14 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
                     break;
             }
         }
-    };
+    };*/
 
-    public static IMyBinder myBinder;
-
-    ServiceConnection mSerconnection= new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            myBinder= (IMyBinder) service;
-            android.util.Log.e("myBinder","connect");
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName name) {
-            android.util.Log.e("myBinder","disconnect");
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.action_webviewtemp);
+
         //Resources res = getResources();
         //PATH = res.getString(R.string.API_URL);
         UrlDB urlDB = new UrlDB(getApplicationContext());
@@ -252,7 +244,7 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
 
         printlayout = findViewById(R.id.ll_print_layout);
         PrintViewRugtek = findViewById(R.id.ll_printview_rugtek);
-        printlayout.setVisibility(View.GONE);
+//        printlayout.setVisibility(View.GONE);
         swipe.setVisibility(View.VISIBLE);
         Ebill_URL = sp.getString("Ebill_URL", "");
         bill_no = sp.getString("Bill_no", "");
@@ -309,12 +301,26 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
 
             if (printerDetails.get(0).getPrinterName().equalsIgnoreCase("NGX")) {
                 try {
-                    mBtp.initService(this, mHandler);
+
+//                    mBtp.initService(this, mHandler);"
+                   PrinterActivity. myBinder.ConnectBtPort(printerDetails.get(0).getPrinterID(), new TaskCallback() {
+                        @Override
+                        public void OnSucceed() {
+                            ISCONNECT=true;
+                            Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void OnFailed() {
+                            ISCONNECT=false;
+                            Toast.makeText(getApplicationContext(),"Failed",Toast.LENGTH_SHORT).show();
+                        }
+                    } );
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                mBtp.setPreferredPrinter(printerDetails.get(0).getPrinterID());
-                mBtp.setPrinterWidth(PrinterWidth.PRINT_WIDTH_72MM);
+//                mBtp.setPreferredPrinter(printerDetails.get(0).getPrinterID());
+//                mBtp.setPrinterWidth(PrinterWidth.PRINT_WIDTH_72MM);
                 isNGX = true;
             } else {
 
@@ -343,15 +349,18 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
             @Override
             public void onClick(View view) {
                 if (isRugtek) {
-                    Log.e("isRugtek","isRugtek:true");
+                    Log.e("isRugtek", "isRugtek:true");
 //                    PrintBillRugtek();//original
                     if (!BluetoothUtil.isBlueToothPrinter) {
                         printTemp(WebViewEbill.this);//testing
                     }
                 } else {
-                    Log.e("isRugtek","isRugtek:False");
+                    Log.e("isRugtek", "isRugtek:False");
+                   /* Intent intent = new Intent(WebViewEbill.this, TscActivity.class);
+                    startActivity(intent);*/
+
                     printBitmap();
-                    if (net.isConnectingToInternet()) {
+                   /* if (net.isConnectingToInternet()) {
 
                         BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -373,12 +382,11 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
                                 "Please check " +
                                         "your data connection or Wifi is ON !");
                     }
-
+*/
                 }
 
             }
         });
-
 
 
         new_bill.setOnClickListener(new View.OnClickListener() {
@@ -428,12 +436,11 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
     }
 
 
-
     public void printTemp(Context context) {
 
 
 //        SunmiPrintHelper.getInstance().printBitmap(getBitmapFromView(PrintViewRugtek), 0);
-        SunmiPrintHelper.getInstance().printBitmap(createBitmapFromView(PrintViewRugtek,0,0), 0);
+        SunmiPrintHelper.getInstance().printBitmap(createBitmapFromView(PrintViewRugtek, 0, 0), 0);
         SunmiPrintHelper.getInstance().feedPaper();
 
 
@@ -454,7 +461,7 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
         Canvas canvas = new Canvas(bitmap);
         Drawable background = view.getBackground();
 
-        if (background!=null)
+        if (background != null)
             //has background drawable, then draw it on the canvas
             background.draw(canvas);
         else
@@ -466,7 +473,8 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
         return bitmap;
     }
 
-    public @NonNull static Bitmap createBitmapFromView(@NonNull View view, int width, int height) {
+    public @NonNull
+    static Bitmap createBitmapFromView(@NonNull View view, int width, int height) {
         if (width > 0 && height > 0) {
             view.measure(View.MeasureSpec.makeMeasureSpec(DynamicUnitUtils
                             .convertDpToPixels(width), View.MeasureSpec.EXACTLY),
@@ -480,7 +488,7 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
         Canvas canvas = new Canvas(bitmap);
         Drawable background = view.getBackground();
 
-        if (background!=null)
+        if (background != null)
             //has background drawable, then draw it on the canvas
             background.draw(canvas);
         else
@@ -501,12 +509,12 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
                             .convertDpToPixels(height), View.MeasureSpec.EXACTLY));
         }
         //Define a bitmap with the same size as the view
-        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(),Bitmap.Config.ARGB_8888);
+        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
         //Bind a canvas to it
         Canvas canvas = new Canvas(returnedBitmap);
         //Get the view's background
-        Drawable bgDrawable =view.getBackground();
-        if (bgDrawable!=null)
+        Drawable bgDrawable = view.getBackground();
+        if (bgDrawable != null)
             //has background drawable, then draw it on the canvas
             bgDrawable.draw(canvas);
         else
@@ -518,25 +526,41 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
         return returnedBitmap;
     }
 
-    private void printBitmap(){
+    private void printBitmap() {
 
-        final Bitmap bitmap1 =  createBitmapFromView(PrintViewRugtek,0,0);
-
-
-            WebViewEbill.myBinder.WriteSendData(new TaskCallback() {
+//        final Bitmap bitmap1 =  createBitmapFromView(PrintViewRugtek,0,0);
+        final Bitmap bitmap1 = BitmapProcess.compressBmpByYourWidth
+                (BitmapFactory.decodeResource(getResources(), R.drawable.processorder), 150);
+        if (PrinterActivity.ISCONNECT) {
+            PrinterActivity.myBinder.WriteSendData(new TaskCallback() {
                 @Override
                 public void OnSucceed() {
-                    Toast.makeText(getApplicationContext(),"Connection success",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Connection success", Toast.LENGTH_SHORT).show();
 
                 }
 
                 @Override
                 public void OnFailed() {
-                    Toast.makeText(getApplicationContext(),"Connection failed",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Connection failed", Toast.LENGTH_SHORT).show();
                 }
             }, new ProcessData() {
                 @Override
                 public List<byte[]> processDataBeforeSend() {
+               /*     List<byte[]> list = new ArrayList<>();
+                    // Label size
+                    list.add(DataForSendToPrinterTSC.sizeBymm(50, 30));
+                    // Gap
+                    list.add(DataForSendToPrinterTSC.gapBymm(2, 0));
+                    // clear buffer
+                    list.add(DataForSendToPrinterTSC.cls());
+                    // set direction
+                    list.add(DataForSendToPrinterTSC.direction(0));
+                    // text
+                    list.add(DataForSendToPrinterTSC.text(10, 30, "TSS24.BF2", 0, 1, 1, "Testing"));
+                    // print
+                    list.add(DataForSendToPrinterTSC.print(1));
+
+                    return list;*/
                     List<byte[]> list = new ArrayList<>();
                     list.add(DataForSendToPrinterPos80.initializePrinter());
                     List<Bitmap> blist= new ArrayList<>();
@@ -549,7 +573,7 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
                     return list;
                 }
             });
-
+        }
     }
 
 
@@ -875,7 +899,7 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
         }
         if (!SerialPortManager.getInstance().isPrintOpen()
                 && !SerialPortManager.getInstance().openSerialPortPrinter()) {
-          //  ToastUtil.showToast(this, "Toast Util Fail");
+            //  ToastUtil.showToast(this, "Toast Util Fail");
         }
         try {
             mBtp.onActivityResume();
@@ -908,14 +932,13 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
         ArrayList<CustomerDetails> customerdata = custmrdb.getCustomerDetails();
         custmrdb.close();
 
-        if (customerdata.size()==0){
+        if (customerdata.size() == 0) {
 
             showFailedAlert("Mobile no is mandatory for Sending Bill");
             dialog.dismiss();
-        }
-        else  {
-            if (customerdata.size()>0)
-                if (!customerdata.get(0).getMobileNO().isEmpty()){
+        } else {
+            if (customerdata.size() > 0)
+                if (!customerdata.get(0).getMobileNO().isEmpty()) {
                     if (net.isConnectingToInternet()) {
 
                         e_bill.setEnabled(false);
@@ -1035,9 +1058,6 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
                     }
                 }
         }
-
-
-
 
 
     }
@@ -1330,7 +1350,6 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
     public void PrintBillRugtek() {
         api.printView(PrintViewRugtek, WebViewEbill.this);
     }
-
 
 
 }

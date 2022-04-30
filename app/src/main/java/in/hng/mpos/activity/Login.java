@@ -5,10 +5,12 @@ import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -20,6 +22,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.IBinder;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.SparseArray;
@@ -47,6 +50,9 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.crashlytics.android.Crashlytics;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
+
+import net.posprinter.posprinterface.IMyBinder;
+import net.posprinter.service.PosprinterService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -107,8 +113,8 @@ public class Login extends BaseActivity implements InputManager.InputDeviceListe
 
 
         setContentView(R.layout.activity_login);
-
         mInputManager = (InputManager) getSystemService(Context.INPUT_SERVICE);
+
         mInputDeviceStates = new SparseArray<InputDeviceState>();
 
         if (isPackageExisted("in.hng.billingapp")) {
@@ -139,8 +145,8 @@ public class Login extends BaseActivity implements InputManager.InputDeviceListe
         PATH = urlDB.getUrlDetails();
         urlDB.close();
 
-        DEV_ID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-//        DEV_ID = "e3175dc0551e269f";
+//        DEV_ID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+        DEV_ID = "e3175dc0551e269f";
         String versionName = BuildConfig.VERSION_NAME;
         Log.e(TAG, "Device ID ===> " + DEV_ID);
        // DEV_ID = "f719f7b9d4b1d256";

@@ -8,6 +8,8 @@
     <color name="ActionBarColor">#fa8c01</color>
     <color name="color_primary">#ff9e24</color>
     <color name="StatusbarColor">#ff9e24</color>
+    <color name="button_main">#1296eb</color>
+    <color name="button_dark">#0984db</color>
     <color name="OrderTakingBackColor">#1e1e1e</color>
     <color name="OrderTextColor">#ffffff</color>
     <color name="OrderLightColor">#B6B6B6</color>

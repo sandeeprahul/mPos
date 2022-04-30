@@ -1,11 +1,14 @@
 package in.hng.mpos.activity;
 
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.provider.Settings.Secure;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +24,9 @@ import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.crashlytics.android.Crashlytics;
+
+import net.posprinter.posprinterface.IMyBinder;
+import net.posprinter.service.PosprinterService;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -68,8 +74,8 @@ public class SplashScreen extends BaseActivity {
             version = findViewById(R.id.txtversion);
             version.setText("Version " + versionName);
             myintent = new Intent(this, Login.class);
-            DEV_ID = Secure.getString(getApplicationContext().getContentResolver(), Secure.ANDROID_ID);
-//            DEV_ID = "e3175dc0551e269f";
+//            DEV_ID = Secure.getString(getApplicationContext().getContentResolver(), Secure.ANDROID_ID);
+            DEV_ID = "e3175dc0551e269f";
             Log.d(TAG, "Device ID ==> " + DEV_ID);
           //  DEV_ID = "f719f7b9d4b1d256";
             PATH = getString(R.string.API_URL) + "getURLdetail?deviceID=" + DEV_ID;

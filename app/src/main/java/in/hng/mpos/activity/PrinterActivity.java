@@ -6,22 +6,31 @@ import android.app.AlertDialog.Builder;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.drawable.ColorDrawable;
+import android.hardware.input.InputManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Message;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,12 +45,17 @@ import com.ngx.DebugLog;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 import in.hng.mpos.Database.CardDB;
 import in.hng.mpos.Database.PrinterDB;
+import in.hng.mpos.DeviceReceiver;
 import in.hng.mpos.R;
 import in.hng.mpos.gettersetter.CardDetails;
 import in.hng.mpos.gettersetter.PrinterDetails;
+import in.hng.mpos.helper.Log;
 
 import static com.cie.btp.BtpConsts.RECEIPT_PRINTER_CONN_DEVICE_NAME;
 import static com.cie.btp.BtpConsts.RECEIPT_PRINTER_CONN_STATE_CONNECTED;
@@ -57,6 +71,11 @@ import static com.cie.btp.BtpConsts.RECEIPT_PRINTER_NOT_FOUND;
 import static com.cie.btp.BtpConsts.RECEIPT_PRINTER_SAVED;
 import static com.cie.btp.BtpConsts.RECEIPT_PRINTER_STATUS;
 
+
+import net.posprinter.posprinterface.IMyBinder;
+import net.posprinter.posprinterface.TaskCallback;
+import net.posprinter.service.PosprinterService;
+
 public class PrinterActivity extends AppCompatActivity {
 
     public static BluetoothPrinter mBtp = BluetoothPrinter.INSTANCE;
@@ -64,19 +83,23 @@ public class PrinterActivity extends AppCompatActivity {
     private static FragmentManager fragMgr;
     private Fragment nm;
     private static final String cHomeStack = "home";
-    private TextView tvName, tvID, tvStatus;
+    TextView tvName, tvID, tvStatus;
     Button btnConnect, btnClear, btnUnpair, btnCancel;
     public static SharedPreferences mSp;
+     public static boolean ISCONNECT=false;
+
     private static LinearLayout ngxLyt, exelLyt;
     SwitchCompat ngx_check, exel_check, rugtek_check;
     private String mConnectedDeviceName = "";
     private String mConnectedDeviceID = "";
+    private ArrayAdapter<String> BtBoudAdapter ,BtfoundAdapter;
+
     public static final String title_connecting = "connecting...";
     public static final String title_connected_to = "connected: ";
     public static final String title_not_connected = "not connected";
     private boolean isNGX = false, isExel = false;
 
-    @SuppressLint("HandlerLeak")
+   /* @SuppressLint("HandlerLeak")
     private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -129,11 +152,30 @@ public class PrinterActivity extends AppCompatActivity {
         }
 
     };
+*/
+    public static IMyBinder myBinder;
+
+    ServiceConnection mSerconnection= new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            myBinder= (IMyBinder) service;
+            Log.e("myBinder","connect");
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            Log.e("myBinder","disconnect");
+        }
+    };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_printer_settings);
+
+        Intent intent =new Intent(this, PosprinterService.class);
+        bindService(intent,mSerconnection,BIND_AUTO_CREATE);
 
 
         final ViewGroup actionBarLayout = (ViewGroup) getLayoutInflater().inflate(
@@ -183,11 +225,11 @@ public class PrinterActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        try {
+       /* try {
             mBtp.initService(this, mHandler);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
 
         tvStatus.setText("");
         PrinterDB printerDB = new PrinterDB(getApplicationContext());
@@ -204,7 +246,7 @@ public class PrinterActivity extends AppCompatActivity {
                 isNGX = true;
                 ngx_check.setChecked(true);
                 ngxLyt.setVisibility(View.VISIBLE);
-                mBtp.setPreferredPrinter(printerDetails.get(0).getPrinterID());
+//                mBtp.setPreferredPrinter(printerDetails.get(0).getPrinterID());
 
             } else {
                 isExel = true;
@@ -218,7 +260,12 @@ public class PrinterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                mBtp.showDeviceList(PrinterActivity.this);
+                //old
+//                mBtp.showDeviceList(PrinterActivity.this);
+                //new
+                setBluetooth();
+
+
 
             }
 
@@ -227,7 +274,7 @@ public class PrinterActivity extends AppCompatActivity {
         btnUnpair.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+//                disConnect();
                 Builder u = new Builder(PrinterActivity.this);
                 u.setTitle("Bluetooth Printer unpair");
                 // d.setIcon(R.drawable.ic_launcher);
@@ -261,7 +308,8 @@ public class PrinterActivity extends AppCompatActivity {
 
             }
 
-        });
+        }
+        );
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -328,17 +376,50 @@ public class PrinterActivity extends AppCompatActivity {
                                                 new DialogInterface.OnClickListener() {
                                                     public void onClick(DialogInterface dialog, int which) {
 
+
                                                         Intent intent = new Intent(PrinterActivity.this, CardSettingsActivity.class);
                                                         startActivity(intent);
                                                         finish();
+
                                                     }
                                                 });
                                         d.show();
                                     } else {
+                                        if (ngx_check.isChecked()){
+                                            String BtAdress=tvID.getText().toString().trim();
 
-                                        Intent i = new Intent(PrinterActivity.this, LoyaltyActivity.class);
-                                        startActivity(i);
-                                        finish();
+                                            Log.e("ngx_check",BtAdress);
+                                            myBinder.ConnectBtPort(BtAdress, new TaskCallback() {
+                                                @Override
+                                                public void OnSucceed() {
+                                                    Toast.makeText(getApplicationContext(),"Connection Success",Toast.LENGTH_SHORT).show();
+                                                    ISCONNECT=true;
+
+                                                    Intent i = new Intent(PrinterActivity.this, LoyaltyActivity.class);
+                                                    startActivity(i);
+                                                    finish();
+                                                }
+
+                                                @Override
+                                                public void OnFailed() {
+                                                    ISCONNECT=false;
+
+                                                    Log.e("ngx_check","OnFailed");
+
+                                                    Toast.makeText(getApplicationContext(),"Connection Failed",Toast.LENGTH_SHORT).show();
+
+                                                }
+                                            });
+
+                                        }
+                                        else {
+                                            Log.e("ngx_check","false");
+
+                                            Intent i = new Intent(PrinterActivity.this, LoyaltyActivity.class);
+                                            startActivity(i);
+                                            finish();
+                                        }
+
                                     }
                                 } else {
 
@@ -584,6 +665,24 @@ public class PrinterActivity extends AppCompatActivity {
         super.onRestart();
     }
 
+    private void disConnect(){
+
+            myBinder.DisconnectCurrentPort(new TaskCallback() {
+                @Override
+                public void OnSucceed() {
+                    ISCONNECT = false;
+                    Toast.makeText(getApplicationContext(),"disconnect ok",Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void OnFailed() {
+                    ISCONNECT = true;
+                    Toast.makeText(getApplicationContext(),"disconnect failed",Toast.LENGTH_SHORT).show();
+                }
+            });
+
+    }
+
 
     @Override
     public void onPause() {
@@ -616,6 +715,167 @@ public class PrinterActivity extends AppCompatActivity {
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(RECEIPT_PRINTER_MESSAGES);
         LocalBroadcastManager.getInstance(this).registerReceiver(ReceiptPrinterMessageReceiver, intentFilter);
+
+    }
+
+    private List<String> btList = new ArrayList<>();
+    private ArrayList<String> btFoundList = new ArrayList<>();
+    private View BtDialogView;
+    private ListView BtBoundLv,BtFoundLv;
+    private LinearLayout ll_BtFound;
+    private AlertDialog btdialog;
+    private Button btScan;
+    private DeviceReceiver BtReciever;
+    private BluetoothAdapter bluetoothAdapter;
+    public void setBluetooth(){
+        bluetoothAdapter=BluetoothAdapter.getDefaultAdapter();
+        //判断时候打开蓝牙设备
+        if (!bluetoothAdapter.isEnabled()){
+            //请求用户开启
+            Intent intent=new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(intent, 1);
+        }else {
+
+            showblueboothlist();
+
+        }
+    }
+    private void showblueboothlist() {
+        if (!bluetoothAdapter.isDiscovering()) {
+            bluetoothAdapter.startDiscovery();
+        }
+        LayoutInflater inflater=LayoutInflater.from(this);
+        BtDialogView=inflater.inflate(R.layout.printer_list, null);
+        BtBoudAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, btList);
+        BtBoundLv= BtDialogView.findViewById(R.id.listView1);
+        btScan= BtDialogView.findViewById(R.id.btn_scan);
+        ll_BtFound= BtDialogView.findViewById(R.id.ll1);
+        BtFoundLv=(ListView) BtDialogView.findViewById(R.id.listView2);
+        BtfoundAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, btFoundList);
+        BtBoundLv.setAdapter(BtBoudAdapter);
+        BtFoundLv.setAdapter(BtfoundAdapter);
+        btdialog=new AlertDialog.Builder(this).setTitle("Select device").setView(BtDialogView).create();
+        btdialog.show();
+
+        BtReciever=new DeviceReceiver(btFoundList,BtfoundAdapter,BtFoundLv);
+
+        IntentFilter filterStart=new IntentFilter(BluetoothDevice.ACTION_FOUND);
+        IntentFilter filterEnd=new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
+        registerReceiver(BtReciever, filterStart);
+        registerReceiver(BtReciever, filterEnd);
+
+        setDlistener();
+        findAvalibleDevice();
+    }
+    private void setDlistener() {
+        // TODO Auto-generated method stub
+        btScan.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                ll_BtFound.setVisibility(View.VISIBLE);
+                //btn_scan.setVisibility(View.GONE);
+            }
+        });
+        BtBoundLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                                    long arg3) {
+                // TODO Auto-generated method stub
+                try {
+                    if(bluetoothAdapter!=null&&bluetoothAdapter.isDiscovering()){
+                        bluetoothAdapter.cancelDiscovery();
+
+                    }
+
+                    String mac=btList.get(arg2);
+                    mac=mac.substring(mac.length()-17);
+//                    String name=msg.substring(0, msg.length()-18);
+                    //lv1.setSelection(arg2);
+                    btdialog.cancel();
+                    tvID.setText(mac);
+
+                    tvStatus.setText("Connected");
+                    HashMap<String, String> PrinterDetails = new HashMap<String, String>();
+                    PrinterDetails.put("printerID", mac);
+                    PrinterDetails.put("printerName", "NGX");
+                    PrinterDB printerDB = new PrinterDB(getApplicationContext());
+                    printerDB.open();
+                    printerDB.deletePrinterTable();
+                    printerDB.createPrinterDetailsTable();
+                    printerDB.insertPrinterDetails(PrinterDetails);
+                    ArrayList<in.hng.mpos.gettersetter.PrinterDetails> printerDetails = printerDB.getPrinterDetails();
+                    printerDB.close();
+                    if (printerDetails.size() > 0) {
+                        tvName.setText(printerDetails.get(0).getPrinterName());
+                        tvID.setText(printerDetails.get(0).getPrinterID());
+                        //
+                    }
+                    isNGX = true;
+                    //Log.i("TAG", "mac="+mac);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        });
+        //未配对的设备，点击，配对，再连接
+        BtFoundLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                                    long arg3) {
+                // TODO Auto-generated method stub
+                try {
+                    if(bluetoothAdapter!=null&&bluetoothAdapter.isDiscovering()){
+                        bluetoothAdapter.cancelDiscovery();
+
+                    }
+                    String mac;
+                    String msg=btFoundList.get(arg2);
+                    mac=msg.substring(msg.length()-17);
+                    String name=msg.substring(0, msg.length()-18);
+                    //lv2.setSelection(arg2);
+                    btdialog.cancel();
+                    tvID.setText(mac);
+                    android.util.Log.i("TAG", "mac="+mac);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    /*
+    找可连接的蓝牙设备
+     */
+    private void findAvalibleDevice() {
+        // TODO Auto-generated method stub
+        //获取可配对蓝牙设备
+        Set<BluetoothDevice> device=bluetoothAdapter.getBondedDevices();
+
+        btList.clear();
+        if(bluetoothAdapter!=null&&bluetoothAdapter.isDiscovering()){
+            BtBoudAdapter.notifyDataSetChanged();
+        }
+        if(device.size()>0){
+            //存在已经配对过的蓝牙设备
+            for(Iterator<BluetoothDevice> it = device.iterator(); it.hasNext();){
+                BluetoothDevice btd=it.next();
+                btList.add(btd.getName()+'\n'+btd.getAddress());
+                BtBoudAdapter.notifyDataSetChanged();
+
+
+
+            }
+        }else{  //不存在已经配对过的蓝牙设备
+            btList.add("No can be matched to use bluetooth");
+            BtBoudAdapter.notifyDataSetChanged();
+        }
+
     }
 
     @Override

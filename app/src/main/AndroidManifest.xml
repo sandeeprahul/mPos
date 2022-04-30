@@ -131,22 +131,24 @@
             android:name=".activity.ActivityProcessOrder"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
+        <service android:name="net.posprinter.service.PosprinterService" />
+
         <activity android:name=".activity.ProductServiceDetailsActivity" />
         <activity android:name=".MarketPlace.OrderInfromation" />
         <activity android:name=".MarketPlace.ScanProducts" />
         <activity android:name=".MarketPlace.MarketOrderProcess" />
         <activity android:name=".MarketPlace.MarketPayment" />
+        <activity android:name=".activity.TscActivity" />
 
-      <!--  <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="de9551fddf70a27e2846877a7759fbdb5d7aef4d" />-->
+        <!--  <meta-data
+              android:name="io.fabric.ApiKey"
+              android:value="de9551fddf70a27e2846877a7759fbdb5d7aef4d" />-->
         <meta-data
             android:name="firebase_crashlytics_collection_enabled"
             android:value="false" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-        <service android:name="net.posprinter.service.PosprinterService" />
 
         <provider
             android:name="com.ezetap.sdk.EzetapFileProvider"
