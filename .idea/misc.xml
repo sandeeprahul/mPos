@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/connectport_selector.xml" value="0.1135" />
         <entry key="app/src/main/res/drawable/customer_button_selector.xml" value="0.1135" />
         <entry key="app/src/main/res/layout/action_bar_simple.xml" value="0.1259259259259259" />
         <entry key="app/src/main/res/layout/action_webview.xml" value="0.335" />
@@ -12,6 +13,7 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/activity_loyalty.xml" value="0.22624434389140272" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22666666666666666" />
+        <entry key="app/src/main/res/layout/activity_main_temp.xml" value="0.1259259259259259" />
         <entry key="app/src/main/res/layout/activity_printer_settings.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/activity_tsc.xml" value="0.1259259259259259" />
         <entry key="app/src/main/res/layout/app_bar_loyalty.xml" value="0.165" />

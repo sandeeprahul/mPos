@@ -50,7 +50,8 @@
                         android:id="@+id/ll_printview_rugtek"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="visible">
 
                         <ImageView
                             android:id="@+id/imageView2"
@@ -129,7 +130,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="0.9"
                                     android:gravity="center_horizontal|left|center_vertical"
-                                   android:text="Name   "
+                                    android:text="Name   "
                                     android:textColor="@color/TextColor"
                                     android:textSize="@dimen/print_text_size_header" />
 
@@ -734,7 +735,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_margin="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
         android:gravity="center"
         android:orientation="vertical">
 

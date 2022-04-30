@@ -513,6 +513,7 @@ public class Login extends BaseActivity implements InputManager.InputDeviceListe
                                                         Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                                         Log.d(TAG, "Login Successful");
                                                         Intent intent = new Intent(Login.this, LoyaltyActivity.class);
+//                                                        Intent intent = new Intent(Login.this, MainActivityTemp.class);
                                                         startActivity(intent);
                                                         finish();
                                                     }

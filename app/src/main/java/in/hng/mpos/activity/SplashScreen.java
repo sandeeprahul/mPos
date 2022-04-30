@@ -35,6 +35,7 @@ import java.io.File;
 
 import in.hng.mpos.BuildConfig;
 import in.hng.mpos.Database.UrlDB;
+import in.hng.mpos.MainActivityTemp;
 import in.hng.mpos.R;
 import in.hng.mpos.helper.ApiCall;
 import in.hng.mpos.helper.Log;
@@ -74,10 +75,12 @@ public class SplashScreen extends BaseActivity {
             version = findViewById(R.id.txtversion);
             version.setText("Version " + versionName);
             myintent = new Intent(this, Login.class);
+//            myintent = new Intent(SplashScreen.this, MainActivityTemp.class);
+
 //            DEV_ID = Secure.getString(getApplicationContext().getContentResolver(), Secure.ANDROID_ID);
             DEV_ID = "e3175dc0551e269f";
             Log.d(TAG, "Device ID ==> " + DEV_ID);
-          //  DEV_ID = "f719f7b9d4b1d256";
+            //  DEV_ID = "f719f7b9d4b1d256";
             PATH = getString(R.string.API_URL) + "getURLdetail?deviceID=" + DEV_ID;
             makeLoginApiCall(PATH);
         } catch (Exception e) {

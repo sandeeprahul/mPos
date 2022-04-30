@@ -139,6 +139,8 @@
         <activity android:name=".MarketPlace.MarketOrderProcess" />
         <activity android:name=".MarketPlace.MarketPayment" />
         <activity android:name=".activity.TscActivity" />
+        <activity android:name=".MainActivityTemp" />
+        <activity android:name=".TscActivity" />
 
         <!--  <meta-data
               android:name="io.fabric.ApiKey"

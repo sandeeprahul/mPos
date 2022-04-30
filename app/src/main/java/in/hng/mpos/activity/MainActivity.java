@@ -836,7 +836,7 @@ public class MainActivity extends BaseActivity {
                                         if (!mrp.equalsIgnoreCase("null") && !mrp.isEmpty()) {
                                             writeData(sku_name, skuCode, storeSKU, mrp, TAXcode, TAXcode, eanCode);
                                             skuList = readFinalData();
-                                            adapter = new ListAdapter(MainActivity.this, skuList);
+                                            adapter = new ListAdapter(MainActivityTemp.this, skuList);
                                             listView.setAdapter(adapter);
                                         } else
                                             showFailedAlert("Product MRP not found!");

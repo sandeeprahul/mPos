@@ -43,6 +43,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import in.hng.mpos.MainActivityTemp;
 import in.hng.mpos.helper.BluetoothUtil;
 import in.hng.mpos.helper.SunmiPrintHelper;
 import sunmi.sunmiui.dialog.DialogCreater;
@@ -143,6 +144,7 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
     public static String bill_no;
     private WebView webView;
     private SwipeRefreshLayout swipe;
+    LinearLayout btns_ll;
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
     private Button e_bill, print_bill, new_bill, btn_more;
@@ -238,8 +240,9 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
         print_bill = findViewById(R.id.printbill);
         new_bill = findViewById(R.id.newbill);
         swipe = findViewById(R.id.swipe);
+        swipe.setVisibility(View.GONE);
         swipe.setOnRefreshListener(() -> WebAction());
-
+//        webView.setVisibility(View.GONE);
         tvStatus = findViewById(R.id.tvStatus);
 
         printlayout = findViewById(R.id.ll_print_layout);
@@ -528,52 +531,39 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
 
     private void printBitmap() {
 
-//        final Bitmap bitmap1 =  createBitmapFromView(PrintViewRugtek,0,0);
-        final Bitmap bitmap1 = BitmapProcess.compressBmpByYourWidth
-                (BitmapFactory.decodeResource(getResources(), R.drawable.processorder), 150);
-        if (PrinterActivity.ISCONNECT) {
-            PrinterActivity.myBinder.WriteSendData(new TaskCallback() {
-                @Override
-                public void OnSucceed() {
-                    Toast.makeText(getApplicationContext(), "Connection success", Toast.LENGTH_SHORT).show();
+        final Bitmap bitmap1 =  createBitmapFromView(PrintViewRugtek,200,200);
+//        final Bitmap bitmap1 =  createBitmapFromView(btns_ll,0,0);
+//        final Bitmap bitmap1 =  BitmapProcess.compressBmpByYourWidth
+//                (BitmapFactory.decodeResource(getResources(), R.drawable.eye_yes),150);
+        PrinterActivity.myBinder.WriteSendData(new TaskCallback() {
+            @Override
+            public void OnSucceed() {
+                Toast.makeText(getApplicationContext(),getString(R.string.send_success),Toast.LENGTH_SHORT).show();
 
-                }
+            }
 
-                @Override
-                public void OnFailed() {
-                    Toast.makeText(getApplicationContext(), "Connection failed", Toast.LENGTH_SHORT).show();
-                }
-            }, new ProcessData() {
-                @Override
-                public List<byte[]> processDataBeforeSend() {
-               /*     List<byte[]> list = new ArrayList<>();
-                    // Label size
-                    list.add(DataForSendToPrinterTSC.sizeBymm(50, 30));
-                    // Gap
-                    list.add(DataForSendToPrinterTSC.gapBymm(2, 0));
-                    // clear buffer
-                    list.add(DataForSendToPrinterTSC.cls());
-                    // set direction
-                    list.add(DataForSendToPrinterTSC.direction(0));
-                    // text
-                    list.add(DataForSendToPrinterTSC.text(10, 30, "TSS24.BF2", 0, 1, 1, "Testing"));
-                    // print
-                    list.add(DataForSendToPrinterTSC.print(1));
+            @Override
+            public void OnFailed() {
+                Toast.makeText(getApplicationContext(),getString(R.string.send_failed),Toast.LENGTH_SHORT).show();
 
-                    return list;*/
-                    List<byte[]> list = new ArrayList<>();
-                    list.add(DataForSendToPrinterPos80.initializePrinter());
-                    List<Bitmap> blist= new ArrayList<>();
-                    blist = BitmapProcess.cutBitmap(50,bitmap1);
-                    for (int i= 0 ;i<blist.size();i++){
-                        list.add(DataForSendToPrinterPos80.printRasterBmp(0,blist.get(i), BitmapToByteData.BmpType.Threshold, BitmapToByteData.AlignType.Center,384));
-                    }
-//                    list.add(StringUtils.strTobytes("1234567890qwertyuiopakjbdscm nkjdv mcdskjb"));
-                    list.add(DataForSendToPrinterPos80.printAndFeedLine());
-                    return list;
-                }
-            });
-        }
+            }
+        }, new ProcessData() {
+            @Override
+            public List<byte[]> processDataBeforeSend() {
+
+                List<byte[]> list = new ArrayList<>();
+                // Label size
+                list.add(DataForSendToPrinterTSC.sizeBymm(50,30));
+                // Gap
+                list.add(DataForSendToPrinterTSC.gapBymm(2,0));
+                // clear buffer
+                list.add(DataForSendToPrinterTSC.cls());
+                list.add(DataForSendToPrinterTSC.bitmap(10,10,0,bitmap1, BitmapToByteData.BmpType.Threshold));
+                list.add(DataForSendToPrinterTSC.print(1));
+
+                return list;
+            }
+        });
     }
 
 
@@ -1066,6 +1056,7 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
     public void WebAction() {
 
         webView = (WebView) findViewById(R.id.webView);
+        webView.setVisibility(View.GONE);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setLoadWithOverviewMode(true);
         webView.getSettings().setUseWideViewPort(true);
