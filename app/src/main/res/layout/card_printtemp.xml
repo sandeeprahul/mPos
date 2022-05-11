@@ -13,7 +13,6 @@
             android:id="@+id/tv_print_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.9"
             android:layout_marginRight="5dp"
             android:gravity="start|center_vertical"
             android:textColor="@color/TextColor"
@@ -23,7 +22,6 @@
             android:id="@+id/tv_print_qty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1.1"
             android:gravity="center"
             android:layout_marginRight="5dp"
 
@@ -34,7 +32,6 @@
             android:id="@+id/tv_print_mrp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginRight="5dp"
 
 
@@ -46,7 +43,6 @@
             android:id="@+id/tv_print_hgprice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:gravity="center"
             android:layout_marginRight="5dp"
 
@@ -58,7 +54,6 @@
             android:id="@+id/tv_print_net"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
 
             android:gravity="end|center_vertical"
             android:textColor="@color/TextColor"
@@ -75,7 +70,6 @@
             android:id="@+id/tv_card_hsn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
 
             android:textColor="@color/TextColor"
             android:textSize="@dimen/print_text_size_header" />
@@ -84,7 +78,6 @@
             android:id="@+id/tv_card_tax"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:gravity="end"
 
             android:textColor="@color/TextColor"

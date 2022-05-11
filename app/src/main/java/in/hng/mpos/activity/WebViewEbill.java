@@ -18,6 +18,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.http.SslError;
@@ -38,7 +39,9 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -144,12 +147,12 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
     public static String bill_no;
     private WebView webView;
     private SwipeRefreshLayout swipe;
-    LinearLayout btns_ll;
     private SharedPreferences sp;
     private SharedPreferences.Editor editor;
     private Button e_bill, print_bill, new_bill, btn_more;
     private ProgressDialog dialog = null;
     ConnectionDetector net;
+    ImageView printdata_img;
     private static final String TAG = "E-bill Window";
     private String PATH, Location;
     private BluetoothPrinter mBtp = PrinterActivity.mBtp;
@@ -167,7 +170,7 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
     private LinearLayout printlayout, PrintViewRugtek;
     String fromActivity = "", userMobileNumber = "";
 
-  /*  @SuppressLint("HandlerLeak")
+    @SuppressLint("HandlerLeak")
     private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -202,7 +205,7 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
                     break;
             }
         }
-    };*/
+    };
 
 
     @Override
@@ -237,6 +240,7 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
 
         btn_more = findViewById(R.id.btn_more);
         e_bill = findViewById(R.id.sndbill);
+        printdata_img = findViewById(R.id.printdata_img);
         print_bill = findViewById(R.id.printbill);
         new_bill = findViewById(R.id.newbill);
         swipe = findViewById(R.id.swipe);
@@ -305,8 +309,8 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
             if (printerDetails.get(0).getPrinterName().equalsIgnoreCase("NGX")) {
                 try {
 
-//                    mBtp.initService(this, mHandler);"
-                   PrinterActivity. myBinder.ConnectBtPort(printerDetails.get(0).getPrinterID(), new TaskCallback() {
+                    mBtp.initService(this, mHandler);
+                  /* PrinterActivity. myBinder.ConnectBtPort(printerDetails.get(0).getPrinterID(), new TaskCallback() {
                         @Override
                         public void OnSucceed() {
                             ISCONNECT=true;
@@ -318,12 +322,12 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
                             ISCONNECT=false;
                             Toast.makeText(getApplicationContext(),"Failed",Toast.LENGTH_SHORT).show();
                         }
-                    } );
+                    } );*/
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-//                mBtp.setPreferredPrinter(printerDetails.get(0).getPrinterID());
-//                mBtp.setPrinterWidth(PrinterWidth.PRINT_WIDTH_72MM);
+                mBtp.setPreferredPrinter(printerDetails.get(0).getPrinterID());
+                mBtp.setPrinterWidth(PrinterWidth.PRINT_WIDTH_72MM);
                 isNGX = true;
             } else {
 
@@ -530,40 +534,54 @@ public class WebViewEbill extends AppCompatActivity implements PrinterAPI.printe
     }
 
     private void printBitmap() {
+        if (PrinterActivity.ISCONNECT) {
 
-        final Bitmap bitmap1 =  createBitmapFromView(PrintViewRugtek,200,200);
-//        final Bitmap bitmap1 =  createBitmapFromView(btns_ll,0,0);
-//        final Bitmap bitmap1 =  BitmapProcess.compressBmpByYourWidth
+            final Bitmap bitmap1 = createBitmapFromView(printlayout, 0, 0);
+            printdata_img.setImageBitmap(bitmap1);
+            printdata_img.setVisibility(View.VISIBLE);
+
+     /*   final Bitmap bitmap12 =  BitmapProcess.compressBmpByYourWidth
+                (BitmapFactory.decodeResource(getResources(), R.drawable.h_g_logo_black),150);*/
+//            Bitmap bm=((BitmapDrawable)printdata_img.getDrawable()).getBitmap();
+            final Bitmap bitmap12 = createBitmapFromView(printdata_img, 300, 250);
+//                final Bitmap bitmap12 =  BitmapProcess.compressBmpByYourWidth
 //                (BitmapFactory.decodeResource(getResources(), R.drawable.eye_yes),150);
-        PrinterActivity.myBinder.WriteSendData(new TaskCallback() {
-            @Override
-            public void OnSucceed() {
-                Toast.makeText(getApplicationContext(),getString(R.string.send_success),Toast.LENGTH_SHORT).show();
+            PrinterActivity.myBinder.WriteSendData(new TaskCallback() {
+                @Override
+                public void OnSucceed() {
+                    Toast.makeText(getApplicationContext(), getString(R.string.send_success), Toast.LENGTH_SHORT).show();
 
-            }
+                }
 
-            @Override
-            public void OnFailed() {
-                Toast.makeText(getApplicationContext(),getString(R.string.send_failed),Toast.LENGTH_SHORT).show();
+                @Override
+                public void OnFailed() {
+                    Toast.makeText(getApplicationContext(), getString(R.string.send_failed), Toast.LENGTH_SHORT).show();
 
-            }
-        }, new ProcessData() {
-            @Override
-            public List<byte[]> processDataBeforeSend() {
+                }
+            }, new ProcessData() {
+                @Override
+                public List<byte[]> processDataBeforeSend() {
 
                 List<byte[]> list = new ArrayList<>();
                 // Label size
-                list.add(DataForSendToPrinterTSC.sizeBymm(50,30));
+                list.add(DataForSendToPrinterTSC.sizeBymm(200,100));
                 // Gap
                 list.add(DataForSendToPrinterTSC.gapBymm(2,0));
                 // clear buffer
                 list.add(DataForSendToPrinterTSC.cls());
-                list.add(DataForSendToPrinterTSC.bitmap(10,10,0,bitmap1, BitmapToByteData.BmpType.Threshold));
+                list.add(DataForSendToPrinterTSC.bitmap(10,10,0,bitmap12, BitmapToByteData.BmpType.Threshold));
                 list.add(DataForSendToPrinterTSC.print(1));
 
-                return list;
-            }
-        });
+                    return list;
+                }
+            });
+        }
+    }
+    public String printText(){
+        Log.e("printTextprintText","called");
+
+        String text = "Health & Glow\nUNIT NO.S-24,IN THE SECOND FLR\nPHOENIX MARKET CITY,OLD DOOR\nNO.66,NEW DOOR NO.142,\nVELACHERY ROAD-PH : 9514305183\nCHENNAI,600042\nTax Invoice/ Bill of Supply";
+        return text;
     }
 
 

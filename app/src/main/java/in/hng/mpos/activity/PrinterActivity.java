@@ -99,7 +99,7 @@ public class PrinterActivity extends AppCompatActivity {
     public static final String title_not_connected = "not connected";
     private boolean isNGX = false, isExel = false;
 
-   /* @SuppressLint("HandlerLeak")
+    @SuppressLint("HandlerLeak")
     private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -152,7 +152,6 @@ public class PrinterActivity extends AppCompatActivity {
         }
 
     };
-*/
     public static IMyBinder myBinder;
 
     ServiceConnection mSerconnection= new ServiceConnection() {
@@ -225,11 +224,11 @@ public class PrinterActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-       /* try {
+        try {
             mBtp.initService(this, mHandler);
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
 
         tvStatus.setText("");
         PrinterDB printerDB = new PrinterDB(getApplicationContext());
@@ -246,7 +245,7 @@ public class PrinterActivity extends AppCompatActivity {
                 isNGX = true;
                 ngx_check.setChecked(true);
                 ngxLyt.setVisibility(View.VISIBLE);
-//                mBtp.setPreferredPrinter(printerDetails.get(0).getPrinterID());
+                mBtp.setPreferredPrinter(printerDetails.get(0).getPrinterID());
 
             } else {
                 isExel = true;
@@ -262,7 +261,7 @@ public class PrinterActivity extends AppCompatActivity {
 
                 //old
 //                mBtp.showDeviceList(PrinterActivity.this);
-                //new
+//                new
                 setBluetooth();
 
 
@@ -387,6 +386,8 @@ public class PrinterActivity extends AppCompatActivity {
                                     } else {
                                         if (ngx_check.isChecked()){
                                             String BtAdress=tvID.getText().toString().trim();
+                                            tvStatus.setText("Connected");
+
 
                                             Log.e("ngx_check",BtAdress);
                                             myBinder.ConnectBtPort(BtAdress, new TaskCallback() {
@@ -394,6 +395,7 @@ public class PrinterActivity extends AppCompatActivity {
                                                 public void OnSucceed() {
                                                     Toast.makeText(getApplicationContext(),"Connection Success",Toast.LENGTH_SHORT).show();
                                                     ISCONNECT=true;
+                                                    tvStatus.setText("Connected");
 
                                                     Intent i = new Intent(PrinterActivity.this, LoyaltyActivity.class);
                                                     startActivity(i);
@@ -405,8 +407,9 @@ public class PrinterActivity extends AppCompatActivity {
                                                     ISCONNECT=false;
 
                                                     Log.e("ngx_check","OnFailed");
+                                                    tvStatus.setText("Failed");
 
-                                                    Toast.makeText(getApplicationContext(),"Connection Failed",Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(getApplicationContext(),"Connection Failed.. Retry",Toast.LENGTH_SHORT).show();
 
                                                 }
                                             });
@@ -687,7 +690,7 @@ public class PrinterActivity extends AppCompatActivity {
     @Override
     public void onPause() {
         if (isNGX)
-            mBtp.onActivityPause();
+//            mBtp.onActivityPause();
         if (isExel)
             mPrinter.onActivityPause();
         super.onPause();
@@ -696,7 +699,7 @@ public class PrinterActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         if (isNGX)
-            mBtp.onActivityResume();
+//            mBtp.onActivityResume();
         if (isExel)
             mPrinter.onActivityPause();
         DebugLog.logTrace("onResume");

@@ -43,6 +43,7 @@ import in.hng.mpos.Adapter.ProductListAdapter;
 import in.hng.mpos.Adapter.ServiceListAdapter;
 import in.hng.mpos.Database.UrlDB;
 import in.hng.mpos.Database.UserDB;
+import in.hng.mpos.MarketPlace.MarketPayment;
 import in.hng.mpos.R;
 import in.hng.mpos.ResponseModel.Details;
 import in.hng.mpos.ResponseModel.ProductServiceInsert;
@@ -410,8 +411,13 @@ public class ProductServiceDetailsActivity extends AppCompatActivity implements 
     }
 
     private void NavigatetoNextPage() {
-        Intent intent = new Intent(this, WebViewEbill.class);
-        startActivity(intent);
+        if(PrinterActivity.ISCONNECT){
+            Intent intent = new Intent(ProductServiceDetailsActivity.this, WebViewEbill_XPrinter.class);
+            startActivity(intent);
+        }else {
+            Intent intent = new Intent(ProductServiceDetailsActivity.this, WebViewEbill.class);
+            startActivity(intent);
+        }
         finish();
     }
 

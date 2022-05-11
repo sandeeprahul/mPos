@@ -77,6 +77,7 @@ import in.hng.mpos.Database.TransactionDB;
 import in.hng.mpos.Database.UrlDB;
 import in.hng.mpos.Database.UserDB;
 import in.hng.mpos.Database.WalletDB;
+import in.hng.mpos.MarketPlace.MarketPayment;
 import in.hng.mpos.R;
 import in.hng.mpos.Utils.Constants;
 import in.hng.mpos.gettersetter.CardDetails;
@@ -1868,13 +1869,20 @@ public class PaymentActivity extends AppCompatActivity implements Inno_SerialCom
                                 editor.putString("bill_no", bill_no);
                                 editor.putString("Ebill_URL", response.getString("billurl"));
                                 editor.apply();
-//                                Intent intent = new Intent(PaymentActivity.this, WebViewEbill.class);
-//                                startActivity(intent);
+                                if(PrinterActivity.ISCONNECT){
+                                    Intent intent = new Intent(PaymentActivity.this, WebViewEbill_XPrinter.class);
+                                    startActivity(intent);
+                                    finish();
+                                }else {
+                                    Intent intent = new Intent(PaymentActivity.this, WebViewEbill.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
                                 EnableButton();
-                                Intent intent = new Intent(PaymentActivity.this, ProductServiceDetailsActivity.class);
-                                intent.putExtra(Constants.FROM, fromActivity);
-                                startActivity(intent);
-                                finish();
+//                                Intent intent = new Intent(PaymentActivity.this, ProductServiceDetailsActivity.class);
+//                                intent.putExtra(Constants.FROM, fromActivity);
+//                                startActivity(intent);
+//                                finish();
                                 Log.i(TAG, "E-bill send");
                             } else {
                                 idialog.dismiss();
@@ -1885,10 +1893,17 @@ public class PaymentActivity extends AppCompatActivity implements Inno_SerialCom
                                 editor.putString("Ebill_URL", "");
                                 editor.apply();
                                 EnableButton();
-                                Intent intent = new Intent(PaymentActivity.this, WebViewEbill.class);
-                                intent.putExtra(Constants.FROM, fromActivity);
-                                startActivity(intent);
-                                finish();
+                                if(PrinterActivity.ISCONNECT){
+                                    Intent intent = new Intent(PaymentActivity.this, WebViewEbill_XPrinter.class);
+                                    startActivity(intent);
+                                    finish();
+
+                                }else {
+                                    Intent intent = new Intent(PaymentActivity.this, WebViewEbill.class);
+                                    startActivity(intent);
+                                    finish();
+
+                                }
                                 Log.e(TAG, "E-bill not sent");
                                 //showFailedAlert("E-Bill not send.");
                             }
@@ -1911,9 +1926,16 @@ public class PaymentActivity extends AppCompatActivity implements Inno_SerialCom
                         editor.putString("Ebill_URL", "");
                         editor.apply();
                         EnableButton();
-                        Intent intent = new Intent(PaymentActivity.this, WebViewEbill.class);
-                        intent.putExtra(Constants.FROM, fromActivity);
-                        startActivity(intent);
+                        if(PrinterActivity.ISCONNECT){
+                            Intent intent = new Intent(PaymentActivity.this, WebViewEbill_XPrinter.class);
+                            intent.putExtra(Constants.FROM, fromActivity);
+                            startActivity(intent);
+                        }else {
+                            Intent intent = new Intent(PaymentActivity.this, WebViewEbill.class);
+                            intent.putExtra(Constants.FROM, fromActivity);
+                            startActivity(intent);
+                        }
+
                         finish();
                         Log.e(TAG, "E-bill not sent");
                     }

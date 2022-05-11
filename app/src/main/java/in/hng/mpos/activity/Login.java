@@ -145,12 +145,13 @@ public class Login extends BaseActivity implements InputManager.InputDeviceListe
         PATH = urlDB.getUrlDetails();
         urlDB.close();
 
-//        DEV_ID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-        DEV_ID = "e3175dc0551e269f";
+        DEV_ID = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+//        DEV_ID = "e3175dc0551e269f";
         String versionName = BuildConfig.VERSION_NAME;
         Log.e(TAG, "Device ID ===> " + DEV_ID);
-       // DEV_ID = "f719f7b9d4b1d256";
-        Log.e(TAG, "Static Device ID ===> " + DEV_ID);
+        Log.e("DEV_ID",DEV_ID);
+
+        // DEV_ID = "f719f7b9d4b1d256";
 
         setActionBarTitle("h&g mPOS - Login");
 
@@ -391,7 +392,8 @@ public class Login extends BaseActivity implements InputManager.InputDeviceListe
                                         Log.d(TAG, "Donwload Manager is Enabled " + downLoadMangerIsEnable(Login.this));
 
                                     }
-                                } else {
+                                }
+                                else {
 
 
                                     dm = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);

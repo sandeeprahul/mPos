@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff">
@@ -39,7 +40,7 @@
             <LinearLayout
                 android:id="@+id/ll_print_layout"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <ScrollView
@@ -199,7 +200,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="32"
                                     android:textColor="@color/TextColor"
                                     android:textSize="@dimen/print_text_size" />
 
@@ -209,7 +209,6 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:gravity="right"
-                                    android:text="132129.00"
                                     android:textColor="@color/TextColor"
                                     android:textSize="@dimen/print_text_size_header" />
                             </LinearLayout>
@@ -355,7 +354,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="20dp"
-                                    android:text="12332.00"
                                     android:textColor="@color/TextColor"
                                     android:textSize="@dimen/print_text_size" />
                             </LinearLayout>
@@ -380,7 +378,6 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:gravity="right"
-                                    android:text="132129.00"
                                     android:textColor="@color/TextColor"
                                     android:textSize="@dimen/print_text_size" />
                             </LinearLayout>
@@ -406,7 +403,6 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:gravity="center"
-                                    android:text="132129.00"
                                     android:textColor="@color/TextColor"
                                     android:textSize="@dimen/print_text_size" />
                             </LinearLayout>
@@ -429,10 +425,9 @@
                                 <TextView
                                     android:id="@+id/tv_sgst_amount"
                                     android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:layout_height="match_parent"
                                     android:layout_weight="1"
                                     android:gravity="center"
-                                    android:text="132129.00"
                                     android:textColor="@color/TextColor"
                                     android:textSize="@dimen/print_text_size" />
                             </LinearLayout>
@@ -460,7 +455,6 @@
                                         android:id="@+id/tv_print_bill_no"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="12345678"
                                         android:textColor="@color/TextColor"
                                         android:textSize="@dimen/print_text_size" />
                                 </LinearLayout>
@@ -484,7 +478,6 @@
                                         android:id="@+id/tv_print_till_no"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="34"
                                         android:textColor="@color/TextColor"
                                         android:textSize="@dimen/print_text_size" />
                                 </LinearLayout>
@@ -514,7 +507,6 @@
                                         android:id="@+id/tv_bill_date"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="28/12/2020"
                                         android:textColor="@color/TextColor"
                                         android:textSize="@dimen/print_text_size" />
                                 </LinearLayout>
@@ -538,7 +530,6 @@
                                         android:id="@+id/tv_bill_time"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="08.55PM"
                                         android:textColor="@color/TextColor"
                                         android:textSize="@dimen/print_text_size" />
                                 </LinearLayout>
@@ -578,7 +569,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="5dp"
-                                    android:text="Rashmi Ranjan"
                                     android:textColor="@color/TextColor"
                                     android:textSize="@dimen/print_text_size" />
                             </LinearLayout>
@@ -601,7 +591,6 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="5dp"
-                                    android:text="9538019397"
                                     android:textColor="@color/TextColor"
                                     android:textSize="@dimen/print_text_size" />
                             </LinearLayout>
@@ -638,7 +627,6 @@
                                         android:id="@+id/tv_casher_id"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="1434343"
                                         android:textColor="@color/TextColor"
                                         android:textSize="@dimen/print_text_size_header" />
                                 </LinearLayout>
@@ -662,7 +650,6 @@
                                         android:id="@+id/tv_gst_in"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="212323344334"
                                         android:textColor="@color/TextColor"
                                         android:textSize="@dimen/print_text_size_header" />
                                 </LinearLayout>
@@ -816,5 +803,12 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/printdata_img"
+        android:layout_width="400dp"
+        android:layout_height="700dp"
+        android:src="@drawable/h_g_logo_black"
+        android:visibility="visible" />
 
 </RelativeLayout>

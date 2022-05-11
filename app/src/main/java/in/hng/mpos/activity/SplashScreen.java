@@ -77,9 +77,12 @@ public class SplashScreen extends BaseActivity {
             myintent = new Intent(this, Login.class);
 //            myintent = new Intent(SplashScreen.this, MainActivityTemp.class);
 
-//            DEV_ID = Secure.getString(getApplicationContext().getContentResolver(), Secure.ANDROID_ID);
-            DEV_ID = "e3175dc0551e269f";
+            DEV_ID = Secure.getString(getApplicationContext().getContentResolver(), Secure.ANDROID_ID);
+//            DEV_ID = "e3175dc0551e269f";
             Log.d(TAG, "Device ID ==> " + DEV_ID);
+            Toast.makeText(SplashScreen.this,DEV_ID, Toast.LENGTH_SHORT).show();
+            Log.e("DEV_ID",DEV_ID);
+
             //  DEV_ID = "f719f7b9d4b1d256";
             PATH = getString(R.string.API_URL) + "getURLdetail?deviceID=" + DEV_ID;
             makeLoginApiCall(PATH);

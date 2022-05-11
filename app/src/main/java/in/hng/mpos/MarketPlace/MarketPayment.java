@@ -65,8 +65,10 @@ import in.hng.mpos.Database.UrlDB;
 import in.hng.mpos.Database.UserDB;
 import in.hng.mpos.Database.WalletDB;
 import in.hng.mpos.R;
+import in.hng.mpos.activity.PrinterActivity;
 import in.hng.mpos.activity.WalletActivity;
 import in.hng.mpos.activity.WebViewEbill;
+import in.hng.mpos.activity.WebViewEbill_XPrinter;
 import in.hng.mpos.gettersetter.CustomerDetails;
 import in.hng.mpos.gettersetter.LoyaltyCredentials;
 import in.hng.mpos.gettersetter.UserDetails;
@@ -1815,8 +1817,14 @@ public class MarketPayment extends AppCompatActivity implements Inno_SerialComm_
                                 editor.putString("bill_no", bill_no);
                                 editor.putString("Ebill_URL", response.getString("billurl"));
                                 editor.apply();
-                               Intent intent = new Intent(MarketPayment.this, WebViewEbill.class);
-                                startActivity(intent);
+                                if(PrinterActivity.ISCONNECT){
+                                    Intent intent = new Intent(MarketPayment.this, WebViewEbill.class);
+                                    startActivity(intent);
+                                }else {
+                                    Intent intent = new Intent(MarketPayment.this, WebViewEbill_XPrinter.class);
+                                    startActivity(intent);
+                                }
+
 //                                Intent intent = new Intent(MarketPayment.this, ProductServiceDetailsActivity.class);
 //                                startActivity(intent);
                                 finish();
@@ -1829,8 +1837,13 @@ public class MarketPayment extends AppCompatActivity implements Inno_SerialComm_
                                 editor.putString("bill_no", bill_no);
                                 editor.putString("Ebill_URL", "");
                                 editor.apply();
-                                Intent intent = new Intent(MarketPayment.this, WebViewEbill.class);
-                                startActivity(intent);
+                                if(PrinterActivity.ISCONNECT){
+                                    Intent intent = new Intent(MarketPayment.this, WebViewEbill_XPrinter.class);
+                                    startActivity(intent);
+                                }else {
+                                    Intent intent = new Intent(MarketPayment.this, WebViewEbill.class);
+                                    startActivity(intent);
+                                }
                                 finish();
                                 Log.e(TAG, "E-bill not sent");
                                 //showFailedAlert("E-Bill not send.");
@@ -1853,8 +1866,13 @@ public class MarketPayment extends AppCompatActivity implements Inno_SerialComm_
                         editor.putString("bill_no", bill_no);
                         editor.putString("Ebill_URL", "");
                         editor.apply();
-                        Intent intent = new Intent(MarketPayment.this, WebViewEbill.class);
-                        startActivity(intent);
+                        if(PrinterActivity.ISCONNECT){
+                            Intent intent = new Intent(MarketPayment.this, WebViewEbill_XPrinter.class);
+                            startActivity(intent);
+                        }else {
+                            Intent intent = new Intent(MarketPayment.this, WebViewEbill.class);
+                            startActivity(intent);
+                        }
                         finish();
                         Log.e(TAG, "E-bill not sent");
                     }

@@ -141,6 +141,7 @@
         <activity android:name=".activity.TscActivity" />
         <activity android:name=".MainActivityTemp" />
         <activity android:name=".TscActivity" />
+        <activity android:name=".activity.WebViewEbill_XPrinter" />
 
         <!--  <meta-data
               android:name="io.fabric.ApiKey"

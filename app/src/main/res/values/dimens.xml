@@ -5,7 +5,7 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
-    <dimen name="print_text_size">8sp</dimen>
-    <dimen name="print_text_size_header">10sp</dimen>
-    <dimen name="print_text_size_small">13sp</dimen>
+    <dimen name="print_text_size">12sp</dimen>
+    <dimen name="print_text_size_header">12sp</dimen>
+    <dimen name="print_text_size_small">14sp</dimen>
 </resources>
