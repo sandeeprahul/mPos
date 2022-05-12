@@ -154,6 +154,7 @@ public class SplashScreen extends BaseActivity {
                                 String Message = responseObject.getString("Message");
                                 Log.i(TAG, Message);
                                 showAlert(Message);
+                                showAlertWithDeviceID(Message,DEV_ID);
                             }
 
                         } catch (JSONException e) {
@@ -218,4 +219,27 @@ public class SplashScreen extends BaseActivity {
             }
         });
     }
+    private void showAlertWithDeviceID(final String msg,final String deviceID) {
+        Log.e(TAG, "alert Displayed" + msg);
+        SplashScreen.this.runOnUiThread(new Runnable() {
+            public void run() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(SplashScreen.this);
+                Log.i(TAG, msg);
+                builder.setTitle("HnG mPOS");
+                builder.setMessage(msg+"\nDeviceId: "+deviceID)
+                        .setCancelable(false)
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Log.d(TAG, "Application Closed");
+                                int pid = android.os.Process.myPid();
+                                android.os.Process.killProcess(pid);
+                                //on click event
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
+    }
+
 }

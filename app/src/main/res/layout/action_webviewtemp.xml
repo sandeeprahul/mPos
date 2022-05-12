@@ -806,8 +806,8 @@
 
     <ImageView
         android:id="@+id/printdata_img"
-        android:layout_width="400dp"
-        android:layout_height="700dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:src="@drawable/h_g_logo_black"
         android:visibility="visible" />
 

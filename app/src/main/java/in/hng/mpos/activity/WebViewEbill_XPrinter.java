@@ -523,7 +523,7 @@ public class WebViewEbill_XPrinter extends AppCompatActivity implements PrinterA
 
             final Bitmap bitmap1 = createBitmapFromView(printlayout, 0, 0);
             printdata_img.setImageBitmap(bitmap1);
-            printdata_img.setVisibility(View.VISIBLE);
+            printdata_img.setVisibility(View.GONE);
 
      /*   final Bitmap bitmap12 =  BitmapProcess.compressBmpByYourWidth
                 (BitmapFactory.decodeResource(getResources(), R.drawable.h_g_logo_black),150);*/

@@ -18,9 +18,9 @@ import com.crashlytics.android.Crashlytics;
 public class Log {
     private static final String NEW_LINE = System.getProperty("line.separator");
     public static boolean mLogcatAppender = true;
-    final static File mLogFile;
+    static File mLogFile;
 
-    static {
+    /*static {
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
         String formattedDate = df.format(c);
@@ -42,7 +42,7 @@ public class Log {
             }
         }
        // logDeviceInfo();
-    }
+    }*/
 
     public static void i(String TAG, String message) {
 
@@ -80,7 +80,7 @@ public class Log {
         }
     }
 
-    private static synchronized void appendLog(String text) {
+    private static synchronized void appendLogTemp(String text) {
         final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
         Crashlytics.log(text);
         try {
@@ -91,6 +91,41 @@ public class Log {
             e.printStackTrace();
         }
     }
+
+    private static synchronized void appendLog(String text) {
+
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd_MM_yyyy_HH_mm");
+        String formattedDate = df.format(c);
+
+        File logfile = Environment.getExternalStorageDirectory();
+//        File myFile = new File(logfile.getAbsolutePath());
+        File myFile = new File(logfile.getAbsolutePath() +File.separator+ "mPOSlog/");
+        if (!myFile.exists()) {
+            myFile.mkdir();
+        }
+
+
+        mLogFile = new File(myFile, "mPOSlog"+formattedDate + ".log");
+        if (!mLogFile.exists()) {
+            try {
+                mLogFile.createNewFile();
+            } catch (final IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        final SimpleDateFormat sdf = new SimpleDateFormat("dd_MM_yyyy_HH_mm");
+        //Crashlytics.log(text);
+        try {
+            final FileWriter fileOut = new FileWriter(mLogFile, true);
+            fileOut.append(sdf.format(new Date()) + " : " + text + NEW_LINE);
+            fileOut.close();
+        } catch (final IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private static void logDeviceInfo() {
         appendLog("Model : " + android.os.Build.MODEL);
